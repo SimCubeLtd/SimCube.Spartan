@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <DocumentationFile>$(AssemblyName).xml</DocumentationFile>
-    <PackageVersion>1.0.0-preview.0.2</PackageVersion>
+    <PackageVersion>1.0.0-preview.0.3</PackageVersion>
     <Title>SimCube.Spartan</Title>
     <Authors>SimCube Ltd / David Sekula / Prom3theu5</Authors>
     <Description>Testable Minimal Apis, With Mediatr and FluentValidation</Description>
