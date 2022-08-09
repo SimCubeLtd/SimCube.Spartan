@@ -1,0 +1,26 @@
+﻿{
+  Version: 1.1,
+  Content: {
+    Headers: [
+      {
+        Key: Content-Type,
+        Value: [
+          application/json; charset=utf-8
+        ]
+      }
+    ]
+  },
+  StatusCode: BadRequest,
+  ReasonPhrase: Bad Request,
+  Headers: [],
+  TrailingHeaders: [],
+  RequestMessage: {
+    Version: 1.1,
+    Method: {
+      Method: GET
+    },
+    RequestUri: 'http://localhost/example/Yoda/17',
+    Headers: []
+  },
+  IsSuccessStatusCode: false
+}

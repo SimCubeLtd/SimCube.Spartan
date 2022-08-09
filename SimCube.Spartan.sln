@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimCube.Spartan.ExampleConsole", "src\SimCube.Spartan.ExampleConsole\SimCube.Spartan.ExampleConsole.csproj", "{007A8CD4-BF86-4FAF-85BF-346C625B726A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{B46F660C-2366-4CF8-9113-B587DC63C06F}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		build.cake = build.cake
+		Directory.Build.props = Directory.Build.props
+		dotnet-tools.json = dotnet-tools.json
+		global.json = global.json
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimCube.Spartan", "src\SimCube.Spartan\SimCube.Spartan.csproj", "{61DAEB9F-7D96-4A98-8D1D-5015194E7ECF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimCube.Spartan.Tests", "tests\SimCube.Spartan.Tests\SimCube.Spartan.Tests.csproj", "{03593B9D-1065-4448-8C05-A3C327F2DED2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{007A8CD4-BF86-4FAF-85BF-346C625B726A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{007A8CD4-BF86-4FAF-85BF-346C625B726A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{007A8CD4-BF86-4FAF-85BF-346C625B726A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{007A8CD4-BF86-4FAF-85BF-346C625B726A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61DAEB9F-7D96-4A98-8D1D-5015194E7ECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61DAEB9F-7D96-4A98-8D1D-5015194E7ECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61DAEB9F-7D96-4A98-8D1D-5015194E7ECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61DAEB9F-7D96-4A98-8D1D-5015194E7ECF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03593B9D-1065-4448-8C05-A3C327F2DED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03593B9D-1065-4448-8C05-A3C327F2DED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03593B9D-1065-4448-8C05-A3C327F2DED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03593B9D-1065-4448-8C05-A3C327F2DED2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

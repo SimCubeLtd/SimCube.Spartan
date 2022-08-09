@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <DocumentationFile>$(AssemblyName).xml</DocumentationFile>
+    <PackageVersion>1.0.0-preview.0.2</PackageVersion>
+    <Title>SimCube.Spartan</Title>
+    <Authors>SimCube Ltd / David Sekula / Prom3theu5</Authors>
+    <Description>Testable Minimal Apis, With Mediatr and FluentValidation</Description>
+    <Copyright>SimCube Ltd</Copyright>
+    <PackageProjectUrl>https://github.com/SimCubeLtd/SimCube.Spartan</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/SimCubeLtd/SimCube.Spartan.git</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>minimal apis, net7, spartan, dotnet, mediatr, fluentvalidation</PackageTags>
+    <PackageReleaseNotes>First preview version, using preview Net7 features, AsParameters, targeting .net 7 preview 6.</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup Label="Package References">
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0-preview.6.22324.4" />
+  </ItemGroup>
+
+  <ItemGroup Label="Framework References">
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup Label="Analyzers">
+    <PackageReference Include="Roslynator.Analyzers" Version="4.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../LICENSE.md" Pack="true" PackagePath=""/>
+  </ItemGroup>
+
+</Project>
