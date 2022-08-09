@@ -15,7 +15,7 @@ public static class MediatedExtensions
     public static WebApplication MediatedGet<TRequest>(this WebApplication app, string route)
     where TRequest : IMediatedRequest
     {
-        app.MapGet(route, async (IMediator mediator, [AsParameters] TRequest request) => await mediator.Send(request));
+        app.MapGet(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => await mediator.Send(request, cancellationToken));
 
         return app;
     }
@@ -30,7 +30,7 @@ public static class MediatedExtensions
     public static WebApplication MediatedPost<TRequest>(this WebApplication app, string route)
         where TRequest : IMediatedRequest
     {
-        app.MapPost(route, async (IMediator mediator, [AsParameters] TRequest request) => await mediator.Send(request));
+        app.MapPost(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => await mediator.Send(request, cancellationToken));
 
         return app;
     }
@@ -45,7 +45,7 @@ public static class MediatedExtensions
     public static WebApplication MediatedPut<TRequest>(this WebApplication app, string route)
         where TRequest : IMediatedRequest
     {
-        app.MapPut(route, async (IMediator mediator, [AsParameters] TRequest request) => await mediator.Send(request));
+        app.MapPut(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => await mediator.Send(request, cancellationToken));
 
         return app;
     }
@@ -60,7 +60,7 @@ public static class MediatedExtensions
     public static WebApplication MediatedPatch<TRequest>(this WebApplication app, string route)
         where TRequest : IMediatedRequest
     {
-        app.MapPatch(route, async (IMediator mediator, [AsParameters] TRequest request) => await mediator.Send(request));
+        app.MapPatch(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => await mediator.Send(request, cancellationToken));
 
         return app;
     }
@@ -75,7 +75,7 @@ public static class MediatedExtensions
     public static WebApplication MediatedDelete<TRequest>(this WebApplication app, string route)
         where TRequest : IMediatedRequest
     {
-        app.MapDelete(route, async (IMediator mediator, [AsParameters] TRequest request) => await mediator.Send(request));
+        app.MapDelete(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => await mediator.Send(request, cancellationToken));
 
         return app;
     }
