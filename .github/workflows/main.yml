@@ -2,7 +2,7 @@ name: Main CI-CD
 
 env:
   SIMCUBE_NUGET_SERVER: https://api.nuget.org/v3/index.json
-  SIMCUBE_NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+  SIMCUBE_NUGET_API_KEY: ${{ secrets.PUBLIC_NUGET_TOKEN }}
   DOTNET_NOLOGO: true
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
@@ -11,6 +11,8 @@ on:
   push:
     branches:
       - main
+    tags:
+      - "*"
 
   workflow_dispatch:
 
