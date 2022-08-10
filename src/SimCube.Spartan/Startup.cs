@@ -3,6 +3,7 @@
 /// <summary>
 /// Startup extensions for Spartan.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public static class Startup
 {
     /// <summary>
@@ -95,9 +96,19 @@ public static class Startup
         }
     }
 
-    private static void MapGenericMediatedEndpoint(WebApplication app, Type request, MediatedRequestAttribute mediatedRequestAttribute) =>
+    private static void MapGenericMediatedEndpoint(WebApplication app, Type request, MediatedRequestAttribute mediatedRequestAttribute)
+    {
+        Action<RouteHandlerBuilder>? configureAction = null;
+        var configureMethod = request.GetMethod("ConfigureEndpoint");
+
+        if (request.IsSubclassOf(typeof(BaseMediatedRequest)) && configureMethod is not null)
+        {
+            configureAction = (FormatterServices.GetUninitializedObject(request) as BaseMediatedRequest)?.ConfigureEndpoint();
+        }
+
         typeof(MediatedExtensions)
             .GetMethod(mediatedRequestAttribute.Method.ToString())?
             .MakeGenericMethod(request)
-            .Invoke(null, new object?[] { app, mediatedRequestAttribute.Route });
+            .Invoke(null, new object?[] { app, mediatedRequestAttribute.Route, configureAction });
+    }
 }

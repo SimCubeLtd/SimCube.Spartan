@@ -1,6 +1,4 @@
-﻿using SimCube.Spartan.Enums;
-
-namespace SimCube.Spartan.Attributes;
+﻿namespace SimCube.Spartan.Attributes;
 
 /// <summary>
 /// Attribute for registration of a request as a Endpoint.

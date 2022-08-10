@@ -1,4 +1,8 @@
-﻿namespace SimCube.Spartan.Tests.Tests;
+﻿using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.DependencyInjection;
+using Shouldly;
+
+namespace SimCube.Spartan.Tests.Tests;
 
 [UsesVerify]
 public class DeleteExampleRequestTests : TestContext
@@ -17,5 +21,19 @@ public class DeleteExampleRequestTests : TestContext
         var response = Client.DeleteAsync($"example/{TestData.UserName}/{TestData.InvalidAge}");
 
         await Verify(response);
+    }
+
+    [Fact]
+    public void DeleteExampleRequest_HasName_DeleteStuff()
+    {
+        var endpointServices = Services.GetRequiredService<IEnumerable<EndpointDataSource>>();
+
+        foreach (var endpointDataSource in endpointServices)
+        {
+            var endpoints = endpointDataSource.Endpoints;
+            var endpoint = endpoints.FirstOrDefault(e => e.DisplayName == "HTTP: DELETE example/{name}/{age}");
+            endpoint.ShouldNotBeNull();
+            endpoint.Metadata.GetMetadata<RouteNameMetadata>()?.RouteName.ShouldBe("DeleteStuff");
+        }
     }
 }
