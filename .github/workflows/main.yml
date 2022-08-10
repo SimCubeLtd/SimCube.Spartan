@@ -1,6 +1,7 @@
 name: Main CI-CD
 
 env:
+  CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   SIMCUBE_NUGET_SERVER: https://api.nuget.org/v3/index.json
   SIMCUBE_NUGET_API_KEY: ${{ secrets.PUBLIC_NUGET_TOKEN }}
   DOTNET_NOLOGO: true
@@ -34,6 +35,13 @@ jobs:
         run: |
           dotnet tool restore
           dotnet cake --pack true
+
+      - uses: codecov/codecov-action@v3
+        with:
+            directory: ./test-output
+            files: coverage.cobertura.xml
+            fail_ci_if_error: true
+            verbose: true
 
       - name: Push to nuget
         working-directory: artifacts/

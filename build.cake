@@ -30,6 +30,7 @@ Task("Clean")
         DeleteDirectories(GetDirectories("**/bin"), new DeleteDirectorySettings() { Force = true, Recursive = true });
         DeleteDirectories(GetDirectories("**/obj"), new DeleteDirectorySettings() { Force = true, Recursive = true });
         CleanDirectory("./artifacts");
+        CleanDirectory("./test-output");
     });
 
 Task("Restore")
@@ -60,22 +61,18 @@ Task("Build")
 
 Task("Test")
     .Description("Runs unit tests and outputs test results to the artifacts directory.")
-    .DoesForEach(GetFiles("./tests/**/*.csproj"), project =>
+    .Does(() =>
     {
         DotNetTest(
-            project.ToString(),
+            "tests/SimCube.Spartan.Tests/SimCube.Spartan.Tests.csproj",
             new DotNetTestSettings()
             {
                 Blame = true,
-                Collectors = new string[] { "Code Coverage", "XPlat Code Coverage" },
                 Configuration = configuration,
-                Loggers = new string[]
-                {
-                    $"trx;LogFileName={project.GetFilenameWithoutExtension()}.trx",
-                    $"html;LogFileName={project.GetFilenameWithoutExtension()}.html",
-                },
+                ResultsDirectory = "./test-output",
                 NoBuild = true,
                 NoRestore = true,
+                Collectors = new string[] { "Code Coverage", "XPlat Code Coverage" },
             });
     });
 
