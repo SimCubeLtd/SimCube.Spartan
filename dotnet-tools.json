@@ -7,6 +7,12 @@
       "commands": [
         "dotnet-cake"
       ]
+    },
+    "minver-cli": {
+      "version": "4.1.0",
+      "commands": [
+        "minver"
+      ]
     }
   }
 }

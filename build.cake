@@ -1,4 +1,5 @@
 #addin nuget:?package=SimpleExec&version=10.0.0
+#addin "nuget:?package=Cake.MinVer&version=2.0.0"
 
 using System.Text.Json;
 using SimpleExec;
@@ -9,9 +10,18 @@ var configuration =
     HasArgument("Configuration") ? Argument<string>("Configuration") :
     EnvironmentVariable("Configuration", "Release");
 
-var version =
-    HasArgument("Version") ? Argument<string>("Version") :
-    EnvironmentVariable("VERSION", "1.0.1");
+var shouldPack = HasArgument("pack") ? Argument<bool>("pack") : false;
+
+var settings = new MinVerSettings()
+{
+    AutoIncrement = MinVerAutoIncrement.Minor,
+    DefaultPreReleasePhase = "preview",
+    MinimumMajorMinor = "1.0",
+    TagPrefix = "v",
+    Verbosity = MinVerVerbosity.Trace,
+};
+
+var version = MinVer(settings);
 
 Task("Clean")
     .Description("Cleans the artifacts, bin and obj directories.")
@@ -41,6 +51,10 @@ Task("Build")
             {
                 Configuration = configuration,
                 NoRestore = true,
+                ArgumentCustomization = args => 
+                  args
+                  .Append($"-p:Version={version}")
+                  .Append($"-p:InformationalVersion={version}"),
             });
     });
 
@@ -68,6 +82,7 @@ Task("Test")
 Task("Pack")
     .Description("Packs the Required Project")
     .IsDependentOn("Test")
+    .WithCriteria(shouldPack)
     .Does(() =>
         {
             DotNetPack("src/SimCube.Spartan/SimCube.Spartan.csproj",
