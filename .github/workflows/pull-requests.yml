@@ -26,3 +26,9 @@ jobs:
         run: |
           dotnet tool restore
           dotnet cake
+
+      - uses: codecov/codecov-action@v3
+        with:
+            files: ./test-output/**/coverage.cobertura.xml
+            fail_ci_if_error: true
+            verbose: true

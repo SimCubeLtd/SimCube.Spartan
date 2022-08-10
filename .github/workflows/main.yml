@@ -35,6 +35,12 @@ jobs:
           dotnet tool restore
           dotnet cake --pack true
 
+      - uses: codecov/codecov-action@v3
+        with:
+            files: ./test-output/**/coverage.cobertura.xml
+            fail_ci_if_error: true
+            verbose: true
+
       - name: Push to nuget
         working-directory: artifacts/
         run: dotnet nuget push *.nupkg -s $SIMCUBE_NUGET_SERVER -k $SIMCUBE_NUGET_API_KEY
