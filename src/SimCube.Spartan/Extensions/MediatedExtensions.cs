@@ -10,12 +10,16 @@ public static class MediatedExtensions
     /// </summary>
     /// <param name="app">The web application instance.</param>
     /// <param name="route">the route to map the request on.</param>
+    /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
-    public static WebApplication MediatedGet<TRequest>(this WebApplication app, string route)
+    public static WebApplication MediatedGet<TRequest>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null)
     where TRequest : IMediatedRequest
     {
-        app.MapGet(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => await mediator.Send(request, cancellationToken));
+        var builder = app.MapGet(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) =>
+            await mediator.Send(request, cancellationToken));
+
+        configureEndpoint?.Invoke(builder);
 
         return app;
     }
@@ -25,12 +29,16 @@ public static class MediatedExtensions
     /// </summary>
     /// <param name="app">The web application instance.</param>
     /// <param name="route">the route to map the request on.</param>
+    /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
-    public static WebApplication MediatedPost<TRequest>(this WebApplication app, string route)
+    public static WebApplication MediatedPost<TRequest>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null)
         where TRequest : IMediatedRequest
     {
-        app.MapPost(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => await mediator.Send(request, cancellationToken));
+        var builder = app.MapPost(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) =>
+            await mediator.Send(request, cancellationToken));
+
+        configureEndpoint?.Invoke(builder);
 
         return app;
     }
@@ -40,12 +48,16 @@ public static class MediatedExtensions
     /// </summary>
     /// <param name="app">The web application instance.</param>
     /// <param name="route">the route to map the request on.</param>
+    /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
-    public static WebApplication MediatedPut<TRequest>(this WebApplication app, string route)
+    public static WebApplication MediatedPut<TRequest>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null)
         where TRequest : IMediatedRequest
     {
-        app.MapPut(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => await mediator.Send(request, cancellationToken));
+        var builder = app.MapPut(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) =>
+            await mediator.Send(request, cancellationToken));
+
+        configureEndpoint?.Invoke(builder);
 
         return app;
     }
@@ -55,12 +67,16 @@ public static class MediatedExtensions
     /// </summary>
     /// <param name="app">The web application instance.</param>
     /// <param name="route">the route to map the request on.</param>
+    /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
-    public static WebApplication MediatedPatch<TRequest>(this WebApplication app, string route)
+    public static WebApplication MediatedPatch<TRequest>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null)
         where TRequest : IMediatedRequest
     {
-        app.MapPatch(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => await mediator.Send(request, cancellationToken));
+        var builder = app.MapPatch(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) =>
+            await mediator.Send(request, cancellationToken));
+
+        configureEndpoint?.Invoke(builder);
 
         return app;
     }
@@ -70,12 +86,16 @@ public static class MediatedExtensions
     /// </summary>
     /// <param name="app">The web application instance.</param>
     /// <param name="route">the route to map the request on.</param>
+    /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
-    public static WebApplication MediatedDelete<TRequest>(this WebApplication app, string route)
+    public static WebApplication MediatedDelete<TRequest>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null)
         where TRequest : IMediatedRequest
     {
-        app.MapDelete(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => await mediator.Send(request, cancellationToken));
+        var builder = app.MapDelete(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) =>
+            await mediator.Send(request, cancellationToken));
+
+        configureEndpoint?.Invoke(builder);
 
         return app;
     }

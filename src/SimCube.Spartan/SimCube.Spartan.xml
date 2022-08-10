@@ -61,48 +61,53 @@
             The extensions for Mediation request mapping.
             </summary>
         </member>
-        <member name="M:SimCube.Spartan.Extensions.MediatedExtensions.MediatedGet``1(Microsoft.AspNetCore.Builder.WebApplication,System.String)">
+        <member name="M:SimCube.Spartan.Extensions.MediatedExtensions.MediatedGet``1(Microsoft.AspNetCore.Builder.WebApplication,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})">
             <summary>
             Map Mediated Get requests to the specified controller action.
             </summary>
             <param name="app">The web application instance.</param>
             <param name="route">the route to map the request on.</param>
+            <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
             <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
             <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
         </member>
-        <member name="M:SimCube.Spartan.Extensions.MediatedExtensions.MediatedPost``1(Microsoft.AspNetCore.Builder.WebApplication,System.String)">
+        <member name="M:SimCube.Spartan.Extensions.MediatedExtensions.MediatedPost``1(Microsoft.AspNetCore.Builder.WebApplication,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})">
             <summary>
             Map Mediated Post requests to the specified controller action.
             </summary>
             <param name="app">The web application instance.</param>
             <param name="route">the route to map the request on.</param>
+            <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
             <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
             <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
         </member>
-        <member name="M:SimCube.Spartan.Extensions.MediatedExtensions.MediatedPut``1(Microsoft.AspNetCore.Builder.WebApplication,System.String)">
+        <member name="M:SimCube.Spartan.Extensions.MediatedExtensions.MediatedPut``1(Microsoft.AspNetCore.Builder.WebApplication,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})">
             <summary>
             Map Mediated Put requests to the specified controller action.
             </summary>
             <param name="app">The web application instance.</param>
             <param name="route">the route to map the request on.</param>
+            <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
             <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
             <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
         </member>
-        <member name="M:SimCube.Spartan.Extensions.MediatedExtensions.MediatedPatch``1(Microsoft.AspNetCore.Builder.WebApplication,System.String)">
+        <member name="M:SimCube.Spartan.Extensions.MediatedExtensions.MediatedPatch``1(Microsoft.AspNetCore.Builder.WebApplication,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})">
             <summary>
             Map Mediated Patch requests to the specified controller action.
             </summary>
             <param name="app">The web application instance.</param>
             <param name="route">the route to map the request on.</param>
+            <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
             <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
             <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
         </member>
-        <member name="M:SimCube.Spartan.Extensions.MediatedExtensions.MediatedDelete``1(Microsoft.AspNetCore.Builder.WebApplication,System.String)">
+        <member name="M:SimCube.Spartan.Extensions.MediatedExtensions.MediatedDelete``1(Microsoft.AspNetCore.Builder.WebApplication,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})">
             <summary>
             Map Mediated Delete requests to the specified controller action.
             </summary>
             <param name="app">The web application instance.</param>
             <param name="route">the route to map the request on.</param>
+            <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
             <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
             <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
         </member>
@@ -110,6 +115,17 @@
             <summary>
             Interface for the Mediated Http Requests.
             </summary>
+        </member>
+        <member name="T:SimCube.Spartan.Requests.BaseMediatedRequest">
+            <summary>
+            Base request for all mediated requests.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.Requests.BaseMediatedRequest.ConfigureEndpoint">
+            <summary>
+            Optionally Configures the Endpoint of the request.
+            </summary>
+            <returns>The route builder configuration action.</returns>
         </member>
         <member name="T:SimCube.Spartan.Startup">
             <summary>

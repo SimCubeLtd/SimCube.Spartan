@@ -7,8 +7,6 @@ builder.Services.AddSpartanInfrastructure(x => x.AsScoped());
 var app = builder.Build();
 
 app.AddMediatedEndpointsFromAttributes();
-
-// app.MediatedGet<GetExampleRequest>("example2/{name}/{age}");
-
-// app.MediatedPost<PostExampleRequest>("example2/{name}/{age}");
+app.MediatedGet<GetExampleRequest>("example/{name}/{age}", routeHandlerBuilder => routeHandlerBuilder.WithName("GetExample"));
+app.MediatedPatch<PatchExampleRequest>("example/{name}/{age}");
 app.Run();

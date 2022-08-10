@@ -63,8 +63,10 @@ builder.Services.AddSpartanInfrastructure(x => x.AsScoped());
 // builder.Services.AddSpartanInfrastructure(x => x.AsScoped(), typeof(MyAssemblyOne), typeof(MyAssemblyTwo));
 
 var app = builder.Build();
-app.MediatedGet<GetExampleRequest>("example/{name}/{age}");
-app.MediatedDelete<DeleteExampleRequest>("example/{name}/{age}");
+
+app.AddMediatedEndpointsFromAttributes();
+app.MediatedGet<GetExampleRequest>("example/{name}/{age}", routeHandlerBuilder => routeHandlerBuilder.WithName("GetExample"));
+app.MediatedPatch<PatchExampleRequest>("example/{name}/{age}");
 
 app.Run();
 ```
@@ -88,6 +90,29 @@ public class GetExampleRequestHandler : IRequestHandler<GetExampleRequest, IResu
         Task.FromResult(Results.Ok($"The age was {request.Age} and the name was {request.Name}"));
 }
 ```
+
+#### Requests can also derive from the BaseMediatedRequest class, and override the ConfigureEndpoint method to chain route endpoint configuration such as Cache, WithName, Produces etc
+
+```csharp
+[MediatedRequest(RequestType.MediatedDelete, "example/{name}/{age}")]
+public class DeleteExampleRequest : BaseMediatedRequest
+{
+    public DeleteExampleRequest(int age, string name)
+    {
+        Age = age;
+        Name = name;
+    }
+
+    public int Age { get; }
+
+    public string Name { get; }
+
+    public override Action<RouteHandlerBuilder> ConfigureEndpoint() => builder =>
+        builder.AllowAnonymous()
+            .WithName("DeleteStuff");
+}
+```
+
 
 
 ## Acknowledgements
