@@ -29,6 +29,7 @@ jobs:
 
       - uses: codecov/codecov-action@v3
         with:
-            files: ./test-output/**/coverage.cobertura.xml
+            directory: ./test-output
+            files: coverage.cobertura.xml
             fail_ci_if_error: true
             verbose: true
