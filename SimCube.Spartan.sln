@@ -19,6 +19,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimCube.Spartan", "src\SimC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimCube.Spartan.Tests", "tests\SimCube.Spartan.Tests\SimCube.Spartan.Tests.csproj", "{03593B9D-1065-4448-8C05-A3C327F2DED2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{EC712C38-BAE8-4EA4-B88D-94220DD8B2FF}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\main.yml = .github\workflows\main.yml
+		.github\workflows\pull-requests.yml = .github\workflows\pull-requests.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,5 +43,8 @@ Global
 		{03593B9D-1065-4448-8C05-A3C327F2DED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03593B9D-1065-4448-8C05-A3C327F2DED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03593B9D-1065-4448-8C05-A3C327F2DED2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EC712C38-BAE8-4EA4-B88D-94220DD8B2FF} = {B46F660C-2366-4CF8-9113-B587DC63C06F}
 	EndGlobalSection
 EndGlobal

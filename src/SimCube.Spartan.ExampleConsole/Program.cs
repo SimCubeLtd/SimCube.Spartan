@@ -2,7 +2,7 @@
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSpartanInfrastructure(x => x.AsScoped());
+builder.Services.AddSpartanInfrastructure(x => x.AsScoped(), true);
 
 var app = builder.Build();
 

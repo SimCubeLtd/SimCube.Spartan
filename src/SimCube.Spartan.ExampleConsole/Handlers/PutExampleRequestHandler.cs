@@ -1,6 +1,4 @@
-﻿using SimCube.Spartan.ExampleConsole.Requests;
-
-namespace SimCube.Spartan.ExampleConsole.Handlers;
+﻿namespace SimCube.Spartan.ExampleConsole.Handlers;
 
 /// <summary>
 /// Th example request handler.

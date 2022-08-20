@@ -2,9 +2,11 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
+        <LangVersion>preview</LangVersion>
     </PropertyGroup>
 
   <ItemGroup Label="Analyzers">
+    <PackageReference Include="Bogus" Version="34.0.2" />
     <PackageReference Include="Roslynator.Analyzers" Version="4.1.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

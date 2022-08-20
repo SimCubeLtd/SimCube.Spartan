@@ -3,7 +3,7 @@
 /// <summary>
 /// The extensions for Mediation request mapping.
 /// </summary>
-public static class MediatedExtensions
+public static class MediatedRequestExtensions
 {
     /// <summary>
     /// Map Mediated Get requests to the specified controller action.

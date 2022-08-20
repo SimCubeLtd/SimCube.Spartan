@@ -1,11 +1,9 @@
-﻿using SimCube.Spartan.Requests;
-
-namespace SimCube.Spartan.ExampleConsole.Requests;
+﻿namespace SimCube.Spartan.ExampleConsole.Requests;
 
 /// <summary>
 /// The example delete request.
 /// </summary>
-[MediatedRequest(RequestType.MediatedDelete, "example/{name}/{age}")]
+[MediatedEndpoint(RequestType.MediatedDelete, "example/{name}/{age}")]
 public class DeleteExampleRequest : BaseMediatedRequest
 {
     /// <summary>

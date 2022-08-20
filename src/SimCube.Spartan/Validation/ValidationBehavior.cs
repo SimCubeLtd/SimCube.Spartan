@@ -21,16 +21,16 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
     /// Performs the validation.
     /// </summary>
     /// <param name="request">The request to validate.</param>
-    /// <param name="ct">The cancellation token.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
     /// <param name="next">The next middleware in the request pipeline.</param>
     /// <returns>The result of the validation, or the result of the next result in the pipeline if validation is successful.</returns>
-    public async Task<TResponse> Handle(TRequest request, CancellationToken ct, RequestHandlerDelegate<TResponse> next)
+    public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
     {
         var context = new ValidationContext<TRequest>(request);
 
         var results = await Task.WhenAll(
             _validators.Select(
-                v => v.ValidateAsync(context, ct)));
+                v => v.ValidateAsync(context, cancellationToken)));
 
         var failures = results
             .SelectMany(result => result.Errors)
