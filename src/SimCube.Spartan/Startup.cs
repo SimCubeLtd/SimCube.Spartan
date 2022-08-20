@@ -13,7 +13,18 @@ public static class Startup
     /// <param name="mediatorScope">The scope to use when registering handlers in Mediatr.</param>
     /// <param name="handlerAssemblyMarkerTypes">The custom assemblies to register (Executing assembly is always included).</param>
     /// <returns>The populated service collection.</returns>
-    public static IServiceCollection AddSpartanInfrastructure(this IServiceCollection services, Action<MediatRServiceConfiguration> mediatorScope, params Type[] handlerAssemblyMarkerTypes)
+    public static IServiceCollection AddSpartanInfrastructure(this IServiceCollection services, Action<MediatRServiceConfiguration> mediatorScope, params Type[] handlerAssemblyMarkerTypes) =>
+        AddSpartanInfrastructure(services, mediatorScope, true, handlerAssemblyMarkerTypes: handlerAssemblyMarkerTypes);
+
+    /// <summary>
+    /// Adds the spartan services to the application.
+    /// </summary>
+    /// <param name="services">The service collection instance.</param>
+    /// <param name="mediatorScope">The scope to use when registering handlers in Mediatr.</param>
+    /// <param name="addFluentValidation">Should add fluent validation validators into the mediator pipeline?.</param>
+    /// <param name="handlerAssemblyMarkerTypes">The custom assemblies to register (Executing assembly is always included).</param>
+    /// <returns>The populated service collection.</returns>
+    public static IServiceCollection AddSpartanInfrastructure(this IServiceCollection services, Action<MediatRServiceConfiguration> mediatorScope, bool addFluentValidation = true, params Type[] handlerAssemblyMarkerTypes)
     {
         var assemblies = new[]
         {
@@ -27,7 +38,10 @@ public static class Startup
                 .ToArray();
         }
 
-        services.AddFluentValidationForRequests(assemblies);
+        if (addFluentValidation)
+        {
+            services.AddFluentValidationForRequests(assemblies);
+        }
 
         services.AddMediatR(mediatorScope, assemblies);
 
@@ -74,41 +88,62 @@ public static class Startup
                 .ToArray();
         }
 
-        var requests = assemblies.SelectMany(x => x.GetTypes())
-                .Where(type => type.GetCustomAttributes(typeof(MediatedRequestAttribute), true).Length > 0 &&
-                               type.GetInterfaces().Contains(typeof(IMediatedRequest)));
+        var endpointsToDefine = assemblies.SelectMany(x => x.GetTypes()).Where(type => type.GetCustomAttributes(typeof(MediatedEndpointAttribute), true).Length > 0).ToArray();
+        var requests = endpointsToDefine.Where(type => type.GetInterfaces().Contains(typeof(IMediatedRequest))).ToArray();
+        var streams = endpointsToDefine.Except(requests).Where(stream => stream.GetInterfaces().Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IMediatedStream<>))).ToArray();
 
-        app.RegisterRequestEndpoints(requests);
+        app.RegisterRequestEndpoints(requests, streams);
 
         return app;
     }
 
-    private static void RegisterRequestEndpoints(this WebApplication app, IEnumerable<Type> requests)
+    private static void RegisterRequestEndpoints(this WebApplication app, IEnumerable<Type> requests, IEnumerable<Type> streams)
     {
         foreach (var request in requests)
         {
-            var attribute = Attribute.GetCustomAttribute(request, typeof(MediatedRequestAttribute));
+            var attribute = Attribute.GetCustomAttribute(request, typeof(MediatedEndpointAttribute));
 
-            if (attribute is MediatedRequestAttribute mediatedRequestAttribute)
+            if (attribute is MediatedEndpointAttribute mediatedRequestAttribute)
             {
-                MapGenericMediatedEndpoint(app, request, mediatedRequestAttribute);
+                var configureMethod = request.GetMethod("ConfigureEndpoint");
+
+                typeof(MediatedRequestExtensions)
+                    .GetMethod(mediatedRequestAttribute.Method.ToString())?
+                    .MakeGenericMethod(request)
+                    .Invoke(null, new object?[]
+                    {
+                        app,
+                        mediatedRequestAttribute.Route,
+                        configureMethod?.Invoke(FormatterServices.GetUninitializedObject(request), Array.Empty<object>()) as Action<RouteHandlerBuilder>
+                    });
             }
         }
-    }
 
-    private static void MapGenericMediatedEndpoint(WebApplication app, Type request, MediatedRequestAttribute mediatedRequestAttribute)
-    {
-        Action<RouteHandlerBuilder>? configureAction = null;
-        var configureMethod = request.GetMethod("ConfigureEndpoint");
-
-        if (request.IsSubclassOf(typeof(BaseMediatedRequest)) && configureMethod is not null)
+        foreach (var stream in streams)
         {
-            configureAction = (FormatterServices.GetUninitializedObject(request) as BaseMediatedRequest)?.ConfigureEndpoint();
-        }
+            var attribute = Attribute.GetCustomAttribute(stream, typeof(MediatedEndpointAttribute));
 
-        typeof(MediatedExtensions)
-            .GetMethod(mediatedRequestAttribute.Method.ToString())?
-            .MakeGenericMethod(request)
-            .Invoke(null, new object?[] { app, mediatedRequestAttribute.Route, configureAction });
+            if (attribute is MediatedEndpointAttribute mediatedRequestAttribute)
+            {
+                var configureMethod = stream.GetMethod("ConfigureEndpoint");
+                var resultType = Array.Find(stream.GetInterfaces(), x => x.GetGenericTypeDefinition() == typeof(IMediatedStream<>))
+                    ?.GetGenericArguments().FirstOrDefault();
+
+                if (resultType is null)
+                {
+                    continue;
+                }
+
+                typeof(MediatedStreamExtensions)
+                    .GetMethod($"{mediatedRequestAttribute.Method.ToString()}Stream")?
+                    .MakeGenericMethod(stream, resultType)
+                    .Invoke(null, new object?[]
+                    {
+                        app,
+                        mediatedRequestAttribute.Route,
+                        configureMethod?.Invoke(FormatterServices.GetUninitializedObject(stream), Array.Empty<object>()) as Action<RouteHandlerBuilder>
+                    });
+            }
+        }
     }
 }
