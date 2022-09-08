@@ -28,17 +28,22 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
     {
         var context = new ValidationContext<TRequest>(request);
 
-        var results = await Task.WhenAll(
+        var results = (await Task.WhenAll(
             _validators.Select(
-                v => v.ValidateAsync(context, cancellationToken)));
+                v => v.ValidateAsync(context, cancellationToken)))).ToList();
 
-        var failures = results
-            .SelectMany(result => result.Errors)
-            .Where(f => f != null)
-            .ToList();
+        if (!results.Any(result => result.Errors.Count > 0))
+        {
+            return await next();
+        }
 
-        return (TResponse)(failures.Count > 0
-            ? Results.BadRequest(failures)
-            : await next());
+        var problems = results
+            .SelectMany(validationResult => validationResult.Errors)
+            .GroupBy(item => item.PropertyName)
+            .ToDictionary(
+                group => group.Key,
+                group => group.Select(entry => entry.ErrorMessage).ToArray());
+
+        return (TResponse)Results.ValidationProblem(problems);
     }
 }

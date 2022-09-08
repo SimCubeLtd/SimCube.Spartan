@@ -5,7 +5,7 @@
       {
         Key: Content-Type,
         Value: [
-          application/json; charset=utf-8
+          application/problem+json
         ]
       }
     ]
