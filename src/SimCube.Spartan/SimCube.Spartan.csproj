@@ -7,7 +7,7 @@
     <Authors>SimCube Ltd / David Sekula / Prom3theu5</Authors>
     <Description>Testable Minimal Apis, With Mediatr and FluentValidation</Description>
     <Copyright>SimCube Ltd</Copyright>
-    <PackageProjectUrl>https://github.com/SimCubeLtd/SimCube.Spartan</PackageProjectUrl>
+    <PackageProjectUrl>https://www.simcube.co.uk</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RepositoryUrl>https://github.com/SimCubeLtd/SimCube.Spartan.git</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
