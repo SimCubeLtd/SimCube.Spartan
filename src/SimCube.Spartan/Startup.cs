@@ -62,7 +62,7 @@ public static class Startup
         ServiceLifetime lifetime = ServiceLifetime.Transient,
         Func<AssemblyScanner.AssemblyScanResult, bool>? filter = null)
     {
-        services.Add(new ServiceDescriptor(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>), lifetime));
+        services.Add(new(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>), lifetime));
         services.AddValidatorsFromAssemblies(assemblies, lifetime, filter);
 
         return services;
@@ -105,7 +105,8 @@ public static class Startup
 
             if (attribute is MediatedEndpointAttribute mediatedRequestAttribute)
             {
-                var configureMethod = request.GetMethod("ConfigureEndpoint");
+                var configureMethod = request.GetMethod(nameof(BaseMediatedRequest.ConfigureEndpoint));
+                var endpointFilters = request.GetProperty(nameof(BaseMediatedRequest.EndpointFilters));
 
                 typeof(MediatedRequestExtensions)
                     .GetMethod(mediatedRequestAttribute.Method.ToString())?
@@ -114,7 +115,8 @@ public static class Startup
                     {
                         app,
                         mediatedRequestAttribute.Route,
-                        configureMethod?.Invoke(FormatterServices.GetUninitializedObject(request), Array.Empty<object>()) as Action<RouteHandlerBuilder>
+                        configureMethod?.Invoke(FormatterServices.GetUninitializedObject(request), Array.Empty<object>()) as Action<RouteHandlerBuilder>,
+                        endpointFilters?.GetValue(FormatterServices.GetUninitializedObject(request)) as List<IEndpointFilter>,
                     });
             }
         }
@@ -125,7 +127,9 @@ public static class Startup
 
             if (attribute is MediatedEndpointAttribute mediatedRequestAttribute)
             {
-                var configureMethod = stream.GetMethod("ConfigureEndpoint");
+                var configureMethod = stream.GetMethod(nameof(BaseMediatedRequest.ConfigureEndpoint));
+                var endpointFilters = stream.GetProperty(nameof(BaseMediatedRequest.EndpointFilters));
+
                 var resultType = Array.Find(stream.GetInterfaces(), x => x.GetGenericTypeDefinition() == typeof(IMediatedStream<>))
                     ?.GetGenericArguments().FirstOrDefault();
 
@@ -141,7 +145,8 @@ public static class Startup
                     {
                         app,
                         mediatedRequestAttribute.Route,
-                        configureMethod?.Invoke(FormatterServices.GetUninitializedObject(stream), Array.Empty<object>()) as Action<RouteHandlerBuilder>
+                        configureMethod?.Invoke(FormatterServices.GetUninitializedObject(stream), Array.Empty<object>()) as Action<RouteHandlerBuilder>,
+                        endpointFilters?.GetValue(FormatterServices.GetUninitializedObject(stream)) as List<IEndpointFilter>,
                     });
             }
         }

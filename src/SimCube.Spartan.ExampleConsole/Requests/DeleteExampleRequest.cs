@@ -1,4 +1,6 @@
-﻿namespace SimCube.Spartan.ExampleConsole.Requests;
+﻿using SimCube.Spartan.ExampleConsole.Filters;
+
+namespace SimCube.Spartan.ExampleConsole.Requests;
 
 /// <summary>
 /// The example delete request.
@@ -26,6 +28,12 @@ public class DeleteExampleRequest : BaseMediatedRequest
     /// Gets the name.
     /// </summary>
     public string Name { get; }
+
+    /// <inheritdoc />
+    public override List<IEndpointFilter> EndpointFilters => new()
+    {
+        new ExampleNameIsPrometheusFilter()
+    };
 
     /// <inheritdoc />
     public override Action<RouteHandlerBuilder> ConfigureEndpoint() => builder =>

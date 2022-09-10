@@ -8,6 +8,11 @@
 public abstract class BaseMediatedStream<TResult> : IMediatedStream<TResult>
 {
     /// <summary>
+    /// Gets the optional filters collection for endpoint middleware chaining via filters.
+    /// </summary>
+    public virtual List<IEndpointFilter> EndpointFilters => new();
+
+    /// <summary>
     /// Optionally Configures the Endpoint of the request.
     /// </summary>
     /// <returns>The route builder configuration action.</returns>
