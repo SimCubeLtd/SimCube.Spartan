@@ -3,6 +3,7 @@
 /// <summary>
 /// Attribute for registration of an Endpoint.
 /// </summary>
+[ExcludeFromCodeCoverage]
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 public sealed class MediatedEndpointAttribute : Attribute
 {

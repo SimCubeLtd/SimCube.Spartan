@@ -12,13 +12,19 @@ public static class MediatedStreamExtensions
     /// <param name="app">The web application instance.</param>
     /// <param name="route">the route to map the request on.</param>
     /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
+    /// <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <typeparam name="TResult">The type of the result.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
-    public static WebApplication MediatedGetStream<TRequest, TResult>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null)
+    public static WebApplication MediatedGetStream<TRequest, TResult>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null, IReadOnlyCollection<IEndpointFilter>? endpointFilters = default)
     where TRequest : IMediatedStream<TResult>
     {
         var builder = app.MapGet(route, (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => mediator.CreateStream(request, cancellationToken));
+
+        if (endpointFilters is { Count: > 0 })
+        {
+            builder.WithEndpointFilters(endpointFilters);
+        }
 
         configureEndpoint?.Invoke(builder);
 
@@ -31,13 +37,19 @@ public static class MediatedStreamExtensions
     /// <param name="app">The web application instance.</param>
     /// <param name="route">the route to map the request on.</param>
     /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
+    /// <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <typeparam name="TResult">The type of the result.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
-    public static WebApplication MediatedPostStream<TRequest, TResult>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null)
+    public static WebApplication MediatedPostStream<TRequest, TResult>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null, IReadOnlyCollection<IEndpointFilter>? endpointFilters = default)
         where TRequest : IMediatedStream<TResult>
     {
         var builder = app.MapPost(route, (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => mediator.CreateStream(request, cancellationToken));
+
+        if (endpointFilters is { Count: > 0 })
+        {
+            builder.WithEndpointFilters(endpointFilters);
+        }
 
         configureEndpoint?.Invoke(builder);
 
@@ -50,13 +62,19 @@ public static class MediatedStreamExtensions
     /// <param name="app">The web application instance.</param>
     /// <param name="route">the route to map the request on.</param>
     /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
+    /// <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <typeparam name="TResult">The type of the result.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
-    public static WebApplication MediatedPutStream<TRequest, TResult>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null)
+    public static WebApplication MediatedPutStream<TRequest, TResult>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null, IReadOnlyCollection<IEndpointFilter>? endpointFilters = default)
         where TRequest : IMediatedStream<TResult>
     {
         var builder = app.MapPut(route, (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => mediator.CreateStream(request, cancellationToken));
+
+        if (endpointFilters is { Count: > 0 })
+        {
+            builder.WithEndpointFilters(endpointFilters);
+        }
 
         configureEndpoint?.Invoke(builder);
 
@@ -69,13 +87,19 @@ public static class MediatedStreamExtensions
     /// <param name="app">The web application instance.</param>
     /// <param name="route">the route to map the request on.</param>
     /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
+    /// <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <typeparam name="TResult">The type of the result.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
-    public static WebApplication MediatedPatchStream<TRequest, TResult>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null)
+    public static WebApplication MediatedPatchStream<TRequest, TResult>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null, IReadOnlyCollection<IEndpointFilter>? endpointFilters = default)
         where TRequest : IMediatedStream<TResult>
     {
         var builder = app.MapPatch(route, (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => mediator.CreateStream(request, cancellationToken));
+
+        if (endpointFilters is { Count: > 0 })
+        {
+            builder.WithEndpointFilters(endpointFilters);
+        }
 
         configureEndpoint?.Invoke(builder);
 
@@ -88,13 +112,19 @@ public static class MediatedStreamExtensions
     /// <param name="app">The web application instance.</param>
     /// <param name="route">the route to map the request on.</param>
     /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
+    /// <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <typeparam name="TResult">The type of the result.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
-    public static WebApplication MediatedDeleteStream<TRequest, TResult>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null)
+    public static WebApplication MediatedDeleteStream<TRequest, TResult>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null, IReadOnlyCollection<IEndpointFilter>? endpointFilters = default)
         where TRequest : IMediatedStream<TResult>
     {
         var builder = app.MapDelete(route, (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => mediator.CreateStream(request, cancellationToken));
+
+        if (endpointFilters is { Count: > 0 })
+        {
+            builder.WithEndpointFilters(endpointFilters);
+        }
 
         configureEndpoint?.Invoke(builder);
 

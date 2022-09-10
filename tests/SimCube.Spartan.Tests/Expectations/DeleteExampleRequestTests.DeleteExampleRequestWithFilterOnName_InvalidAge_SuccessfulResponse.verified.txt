@@ -1,0 +1,32 @@
+﻿{
+  Version: 1.1,
+  Content: {
+    Headers: [
+      {
+        Key: Content-Type,
+        Value: [
+          text/plain; charset=utf-8
+        ]
+      },
+      {
+        Key: Content-Length,
+        Value: [
+          18
+        ]
+      }
+    ]
+  },
+  StatusCode: OK,
+  ReasonPhrase: OK,
+  Headers: [],
+  TrailingHeaders: [],
+  RequestMessage: {
+    Version: 1.1,
+    Method: {
+      Method: DELETE
+    },
+    RequestUri: 'http://localhost/example/Prometheus/17',
+    Headers: []
+  },
+  IsSuccessStatusCode: true
+}

@@ -3,6 +3,8 @@
 
 Testable Clean Minimal Apis, with Mediatr and Fluent Validation.
 
+Including Endpoint configuration, and IEndpointFilters! 
+
 Utilising .Net 7's &nbsp;[AsParametersAttribute](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.asparametersattribute?view=aspnetcore-7.0)
 
 &nbsp;
@@ -96,7 +98,8 @@ public class GetExampleRequestHandler : IRequestHandler<GetExampleRequest, IResu
 }
 ```
 
-#### Requests can also derive from the BaseMediatedRequest class, and override the ConfigureEndpoint method to chain route endpoint configuration such as Cache, WithName, Produces etc
+#### Requests can also derive from the BaseMediatedRequest class, and override the ConfigureEndpoint method to chain route endpoint configuration such as Cache, WithName, Produces etc.
+#### You also have the ability to supply a collection of IEndpointFilters to chain to the endpoint, by overriding the 'EndpointFilters' property! 
 
 ```csharp
 [MediatedRequest(RequestType.MediatedDelete, "example/{name}/{age}")]
@@ -111,7 +114,16 @@ public class DeleteExampleRequest : BaseMediatedRequest
     public int Age { get; }
 
     public string Name { get; }
+    
+    // Here we override the EndpointFilters property, chaining the filter onto the request endpoint 
+    // The are processed in the order that they appear in the list.
+    public override List<IEndpointFilter> EndpointFilters => new()
+    {
+        new ExampleNameIsPrometheusFilter()
+    };
 
+    // Here we override the invocation of the configuration of the route handler builder,
+    // Allowing you to add CacheOutput, manual filters, WithName, Produces etc.
     public override Action<RouteHandlerBuilder> ConfigureEndpoint() => builder =>
         builder.AllowAnonymous()
             .WithName("DeleteStuff");
