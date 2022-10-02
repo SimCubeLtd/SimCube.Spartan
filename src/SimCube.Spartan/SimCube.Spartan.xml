@@ -293,13 +293,13 @@
             </summary>
             <param name="validators">The validators to use to validate against.</param>
         </member>
-        <member name="M:SimCube.Spartan.Validation.ValidationBehavior`2.Handle(`0,System.Threading.CancellationToken,MediatR.RequestHandlerDelegate{`1})">
+        <member name="M:SimCube.Spartan.Validation.ValidationBehavior`2.Handle(`0,MediatR.RequestHandlerDelegate{`1},System.Threading.CancellationToken)">
             <summary>
             Performs the validation.
             </summary>
             <param name="request">The request to validate.</param>
-            <param name="cancellationToken">The cancellation token.</param>
             <param name="next">The next middleware in the request pipeline.</param>
+            <param name="cancellationToken">The cancellation token.</param>
             <returns>The result of the validation, or the result of the next result in the pipeline if validation is successful.</returns>
         </member>
     </members>
