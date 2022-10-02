@@ -22,10 +22,10 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
     /// Performs the validation.
     /// </summary>
     /// <param name="request">The request to validate.</param>
-    /// <param name="cancellationToken">The cancellation token.</param>
     /// <param name="next">The next middleware in the request pipeline.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>The result of the validation, or the result of the next result in the pipeline if validation is successful.</returns>
-    public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         var context = new ValidationContext<TRequest>(request);
 
