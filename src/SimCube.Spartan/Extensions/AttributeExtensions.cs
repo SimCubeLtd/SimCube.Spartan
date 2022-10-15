@@ -22,14 +22,10 @@ internal static class AttributeExtensions
         var configureMethod = request.GetMethod(nameof(BaseMediatedRequest.ConfigureEndpoint));
         var endpointFilters = request.GetProperty(nameof(BaseMediatedRequest.EndpointFilters));
         var cachePolicyName = GetCachedPolicyNameIfHasAttribute(attributes);
+        var rateLimitPolicyName = GetRateLimitPolicyNameIfHasAttribute(attributes);
 
-        CreateMediatedHandler(mediatedRequestAttribute, request, app, configureMethod, endpointFilters, cachePolicyName);
+        CreateMediatedHandler(mediatedRequestAttribute, request, app, configureMethod, endpointFilters, cachePolicyName, rateLimitPolicyName);
     }
-
-    private static string? GetCachedPolicyNameIfHasAttribute(Attribute[] attributes) =>
-        attributes?.FirstOrDefault(x => x is CachePolicyAttribute) is not CachePolicyAttribute cachePolicyAttribute
-            ? null
-            : cachePolicyAttribute.PolicyName;
 
     private static void CreateMediatedHandler(
         MediatedEndpointAttribute mediatedEndpointAttribute,
@@ -37,7 +33,8 @@ internal static class AttributeExtensions
         WebApplication app,
         MethodBase? configureMethod,
         PropertyInfo? endpointFilters,
-        string? cachedPolicyName)
+        string? cachedPolicyName,
+        string? rateLimitPolicyName)
     {
         var resultType = GetResultType(request);
 
@@ -59,7 +56,8 @@ internal static class AttributeExtensions
                     mediatedEndpointAttribute.Route,
                     configureMethod?.Invoke(FormatterServices.GetUninitializedObject(request), Array.Empty<object>()) as Action<RouteHandlerBuilder>,
                     endpointFilters?.GetValue(FormatterServices.GetUninitializedObject(request)) as List<IEndpointFilter>,
-                    cachedPolicyName
+                    cachedPolicyName,
+                    rateLimitPolicyName
                 });
     }
 
@@ -73,4 +71,14 @@ internal static class AttributeExtensions
         return Array.Find(request.GetInterfaces(), x => x.GetGenericTypeDefinition() == typeof(IMediatedStream<>))
             ?.GetGenericArguments().FirstOrDefault();
     }
+
+    private static string? GetCachedPolicyNameIfHasAttribute(Attribute[] attributes) =>
+        attributes?.FirstOrDefault(x => x is CachePolicyAttribute) is not CachePolicyAttribute cachePolicyAttribute
+            ? null
+            : cachePolicyAttribute.PolicyName;
+
+    private static string? GetRateLimitPolicyNameIfHasAttribute(Attribute[] attributes) =>
+        attributes?.FirstOrDefault(x => x is RateLimitPolicyAttribute) is not RateLimitPolicyAttribute rateLimitPolicyAttribute
+            ? null
+            : rateLimitPolicyAttribute.PolicyName;
 }
