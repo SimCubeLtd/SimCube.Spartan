@@ -13,7 +13,8 @@ public static class MediatedStreamExtensions
     /// <param name="route">the route to map the request on.</param>
     /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
     /// <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
-    /// <param name="namedCachePolicy">The named Output Cache Policy to use.</param>
+    /// <param name="namedCachePolicy">The optional named Output Cache Policy to use.</param>
+    /// <param name="namedRateLimitPolicy">The optional named Rate Limit Policy to use.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <typeparam name="TResult">The type of the result.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
@@ -22,7 +23,8 @@ public static class MediatedStreamExtensions
         string route,
         Action<RouteHandlerBuilder>? configureEndpoint = null,
         IReadOnlyCollection<IEndpointFilter>? endpointFilters = default,
-        string? namedCachePolicy = default)
+        string? namedCachePolicy = default,
+        string? namedRateLimitPolicy = default)
     where TRequest : IMediatedStream<TResult>
     {
         var builder = app.MapGet(route, (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => mediator.CreateStream(request, cancellationToken));
@@ -37,6 +39,11 @@ public static class MediatedStreamExtensions
             builder.CacheOutput(namedCachePolicy);
         }
 
+        if (namedRateLimitPolicy is not null)
+        {
+            builder.RequireRateLimiting(namedRateLimitPolicy);
+        }
+
         configureEndpoint?.Invoke(builder);
 
         return app;
@@ -49,7 +56,8 @@ public static class MediatedStreamExtensions
     /// <param name="route">the route to map the request on.</param>
     /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
     /// <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
-    /// <param name="namedCachePolicy">The named Output Cache Policy to use.</param>
+    /// <param name="namedCachePolicy">The optional named Output Cache Policy to use.</param>
+    /// <param name="namedRateLimitPolicy">The optional named Rate Limit Policy to use.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <typeparam name="TResult">The type of the result.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
@@ -58,7 +66,8 @@ public static class MediatedStreamExtensions
         string route,
         Action<RouteHandlerBuilder>? configureEndpoint = null,
         IReadOnlyCollection<IEndpointFilter>? endpointFilters = default,
-        string? namedCachePolicy = default)
+        string? namedCachePolicy = default,
+        string? namedRateLimitPolicy = default)
         where TRequest : IMediatedStream<TResult>
     {
         var builder = app.MapPost(route, (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => mediator.CreateStream(request, cancellationToken));
@@ -73,6 +82,11 @@ public static class MediatedStreamExtensions
             builder.CacheOutput(namedCachePolicy);
         }
 
+        if (namedRateLimitPolicy is not null)
+        {
+            builder.RequireRateLimiting(namedRateLimitPolicy);
+        }
+
         configureEndpoint?.Invoke(builder);
 
         return app;
@@ -85,7 +99,8 @@ public static class MediatedStreamExtensions
     /// <param name="route">the route to map the request on.</param>
     /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
     /// <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
-    /// <param name="namedCachePolicy">The named Output Cache Policy to use.</param>
+    /// <param name="namedCachePolicy">The optional named Output Cache Policy to use.</param>
+    /// <param name="namedRateLimitPolicy">The optional named Rate Limit Policy to use.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <typeparam name="TResult">The type of the result.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
@@ -94,7 +109,8 @@ public static class MediatedStreamExtensions
         string route,
         Action<RouteHandlerBuilder>? configureEndpoint = null,
         IReadOnlyCollection<IEndpointFilter>? endpointFilters = default,
-        string? namedCachePolicy = default)
+        string? namedCachePolicy = default,
+        string? namedRateLimitPolicy = default)
         where TRequest : IMediatedStream<TResult>
     {
         var builder = app.MapPut(route, (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => mediator.CreateStream(request, cancellationToken));
@@ -109,6 +125,11 @@ public static class MediatedStreamExtensions
             builder.CacheOutput(namedCachePolicy);
         }
 
+        if (namedRateLimitPolicy is not null)
+        {
+            builder.RequireRateLimiting(namedRateLimitPolicy);
+        }
+
         configureEndpoint?.Invoke(builder);
 
         return app;
@@ -121,7 +142,8 @@ public static class MediatedStreamExtensions
     /// <param name="route">the route to map the request on.</param>
     /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
     /// <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
-    /// <param name="namedCachePolicy">The named Output Cache Policy to use.</param>
+    /// <param name="namedCachePolicy">The optional named Output Cache Policy to use.</param>
+    /// <param name="namedRateLimitPolicy">The optional named Rate Limit Policy to use.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <typeparam name="TResult">The type of the result.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
@@ -130,7 +152,8 @@ public static class MediatedStreamExtensions
         string route,
         Action<RouteHandlerBuilder>? configureEndpoint = null,
         IReadOnlyCollection<IEndpointFilter>? endpointFilters = default,
-        string? namedCachePolicy = default)
+        string? namedCachePolicy = default,
+        string? namedRateLimitPolicy = default)
         where TRequest : IMediatedStream<TResult>
     {
         var builder = app.MapPatch(route, (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => mediator.CreateStream(request, cancellationToken));
@@ -145,6 +168,11 @@ public static class MediatedStreamExtensions
             builder.CacheOutput(namedCachePolicy);
         }
 
+        if (namedRateLimitPolicy is not null)
+        {
+            builder.RequireRateLimiting(namedRateLimitPolicy);
+        }
+
         configureEndpoint?.Invoke(builder);
 
         return app;
@@ -157,7 +185,8 @@ public static class MediatedStreamExtensions
     /// <param name="route">the route to map the request on.</param>
     /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
     /// <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
-    /// <param name="namedCachePolicy">The named Output Cache Policy to use.</param>
+    /// <param name="namedCachePolicy">The optional named Output Cache Policy to use.</param>
+    /// <param name="namedRateLimitPolicy">The optional named Rate Limit Policy to use.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <typeparam name="TResult">The type of the result.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
@@ -166,7 +195,8 @@ public static class MediatedStreamExtensions
         string route,
         Action<RouteHandlerBuilder>? configureEndpoint = null,
         IReadOnlyCollection<IEndpointFilter>? endpointFilters = default,
-        string? namedCachePolicy = default)
+        string? namedCachePolicy = default,
+        string? namedRateLimitPolicy = default)
         where TRequest : IMediatedStream<TResult>
     {
         var builder = app.MapDelete(route, (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) => mediator.CreateStream(request, cancellationToken));
@@ -179,6 +209,11 @@ public static class MediatedStreamExtensions
         if (namedCachePolicy is not null)
         {
             builder.CacheOutput(namedCachePolicy);
+        }
+
+        if (namedRateLimitPolicy is not null)
+        {
+            builder.RequireRateLimiting(namedRateLimitPolicy);
         }
 
         configureEndpoint?.Invoke(builder);
