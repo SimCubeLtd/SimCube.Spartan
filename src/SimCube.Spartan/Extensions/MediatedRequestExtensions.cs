@@ -13,9 +13,15 @@ public static class MediatedRequestExtensions
     /// <param name="route">the route to map the request on.</param>
     /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
     /// <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
+    /// <param name="namedCachePolicy">The named Output Cache Policy to use.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
-    public static WebApplication MediatedGet<TRequest>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null, IReadOnlyCollection<IEndpointFilter>? endpointFilters = default)
+    public static WebApplication MediatedGet<TRequest>(
+        this WebApplication app,
+        string route,
+        Action<RouteHandlerBuilder>? configureEndpoint = null,
+        IReadOnlyCollection<IEndpointFilter>? endpointFilters = default,
+        string? namedCachePolicy = default)
     where TRequest : IMediatedRequest
     {
         var builder = app.MapGet(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken)
@@ -24,6 +30,11 @@ public static class MediatedRequestExtensions
         if (endpointFilters is { Count: > 0 })
         {
             builder.WithEndpointFilters(endpointFilters);
+        }
+
+        if (namedCachePolicy is not null)
+        {
+            builder.CacheOutput(namedCachePolicy);
         }
 
         configureEndpoint?.Invoke(builder);
@@ -38,9 +49,15 @@ public static class MediatedRequestExtensions
     /// <param name="route">the route to map the request on.</param>
     /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
     /// <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
+    /// <param name="namedCachePolicy">The named Output Cache Policy to use.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
-    public static WebApplication MediatedPost<TRequest>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null, IReadOnlyCollection<IEndpointFilter>? endpointFilters = default)
+    public static WebApplication MediatedPost<TRequest>(
+        this WebApplication app,
+        string route,
+        Action<RouteHandlerBuilder>? configureEndpoint = null,
+        IReadOnlyCollection<IEndpointFilter>? endpointFilters = default,
+        string? namedCachePolicy = default)
         where TRequest : IMediatedRequest
     {
         var builder = app.MapPost(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) =>
@@ -49,6 +66,11 @@ public static class MediatedRequestExtensions
         if (endpointFilters is { Count: > 0 })
         {
             builder.WithEndpointFilters(endpointFilters);
+        }
+
+        if (namedCachePolicy is not null)
+        {
+            builder.CacheOutput(namedCachePolicy);
         }
 
         configureEndpoint?.Invoke(builder);
@@ -63,9 +85,15 @@ public static class MediatedRequestExtensions
     /// <param name="route">the route to map the request on.</param>
     /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
     /// <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
+    /// <param name="namedCachePolicy">The named Output Cache Policy to use.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
-    public static WebApplication MediatedPut<TRequest>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null, IReadOnlyCollection<IEndpointFilter>? endpointFilters = default)
+    public static WebApplication MediatedPut<TRequest>(
+        this WebApplication app,
+        string route,
+        Action<RouteHandlerBuilder>? configureEndpoint = null,
+        IReadOnlyCollection<IEndpointFilter>? endpointFilters = default,
+        string? namedCachePolicy = default)
         where TRequest : IMediatedRequest
     {
         var builder = app.MapPut(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) =>
@@ -74,6 +102,11 @@ public static class MediatedRequestExtensions
         if (endpointFilters is { Count: > 0 })
         {
             builder.WithEndpointFilters(endpointFilters);
+        }
+
+        if (namedCachePolicy is not null)
+        {
+            builder.CacheOutput(namedCachePolicy);
         }
 
         configureEndpoint?.Invoke(builder);
@@ -88,9 +121,15 @@ public static class MediatedRequestExtensions
     /// <param name="route">the route to map the request on.</param>
     /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
     /// <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
+    /// <param name="namedCachePolicy">The named Output Cache Policy to use.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
-    public static WebApplication MediatedPatch<TRequest>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null, IReadOnlyCollection<IEndpointFilter>? endpointFilters = default)
+    public static WebApplication MediatedPatch<TRequest>(
+        this WebApplication app,
+        string route,
+        Action<RouteHandlerBuilder>? configureEndpoint = null,
+        IReadOnlyCollection<IEndpointFilter>? endpointFilters = default,
+        string? namedCachePolicy = default)
         where TRequest : IMediatedRequest
     {
         var builder = app.MapPatch(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) =>
@@ -99,6 +138,11 @@ public static class MediatedRequestExtensions
         if (endpointFilters is { Count: > 0 })
         {
             builder.WithEndpointFilters(endpointFilters);
+        }
+
+        if (namedCachePolicy is not null)
+        {
+            builder.CacheOutput(namedCachePolicy);
         }
 
         configureEndpoint?.Invoke(builder);
@@ -113,9 +157,15 @@ public static class MediatedRequestExtensions
     /// <param name="route">the route to map the request on.</param>
     /// <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
     /// <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
+    /// <param name="namedCachePolicy">The named Output Cache Policy to use.</param>
     /// <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
     /// <returns>A type of <see cref="IResult"/>.</returns>
-    public static WebApplication MediatedDelete<TRequest>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null, IReadOnlyCollection<IEndpointFilter>? endpointFilters = default)
+    public static WebApplication MediatedDelete<TRequest>(
+        this WebApplication app,
+        string route,
+        Action<RouteHandlerBuilder>? configureEndpoint = null,
+        IReadOnlyCollection<IEndpointFilter>? endpointFilters = default,
+        string? namedCachePolicy = default)
         where TRequest : IMediatedRequest
     {
         var builder = app.MapDelete(route, async (IMediator mediator, [AsParameters] TRequest request, CancellationToken cancellationToken) =>
@@ -124,6 +174,11 @@ public static class MediatedRequestExtensions
         if (endpointFilters is { Count: > 0 })
         {
             builder.WithEndpointFilters(endpointFilters);
+        }
+
+        if (namedCachePolicy is not null)
+        {
+            builder.CacheOutput(namedCachePolicy);
         }
 
         configureEndpoint?.Invoke(builder);
