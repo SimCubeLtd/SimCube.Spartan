@@ -3,14 +3,12 @@
   Content: {
     Headers: [
       {
-        Key: Content-Type,
-        Value: [
+        Content-Type: [
           text/plain; charset=utf-8
         ]
       },
       {
-        Key: Content-Length,
-        Value: [
+        Content-Length: [
           18
         ]
       }
@@ -25,7 +23,7 @@
     Method: {
       Method: DELETE
     },
-    RequestUri: 'http://localhost/example/Prometheus/17',
+    RequestUri: http://localhost/example/Prometheus/17,
     Headers: []
   },
   IsSuccessStatusCode: true

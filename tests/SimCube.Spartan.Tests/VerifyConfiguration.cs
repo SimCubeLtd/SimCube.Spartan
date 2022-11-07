@@ -10,7 +10,7 @@ public static class VerifyConfiguration
     [ModuleInitializer]
     public static void Init()
     {
-        VerifierSettings.DerivePathInfo((_, project, type, method) =>
+        DerivePathInfo((_, project, type, method) =>
         {
             var root = Path.Combine(project, "Expectations");
             return GetFallbackPathInfo(root, type, method);
