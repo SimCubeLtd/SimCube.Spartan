@@ -3,8 +3,7 @@
   Content: {
     Headers: [
       {
-        Key: Content-Type,
-        Value: [
+        Content-Type: [
           application/problem+json
         ]
       }
@@ -19,7 +18,7 @@
     Method: {
       Method: DELETE
     },
-    RequestUri: 'http://localhost/example/Yoda/17',
+    RequestUri: http://localhost/example/Yoda/17,
     Headers: []
   },
   IsSuccessStatusCode: false

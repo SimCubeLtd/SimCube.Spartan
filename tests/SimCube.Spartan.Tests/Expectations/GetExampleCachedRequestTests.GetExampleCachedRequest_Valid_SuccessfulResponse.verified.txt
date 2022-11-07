@@ -9,7 +9,7 @@
     Method: {
       Method: GET
     },
-    RequestUri: 'http://localhost/example-cached/Yoda/21'
+    RequestUri: http://localhost/example-cached/Yoda/21
   },
   IsSuccessStatusCode: true
 }

@@ -3,8 +3,7 @@
   Content: {
     Headers: [
       {
-        Key: Content-Type,
-        Value: [
+        Content-Type: [
           application/json; charset=utf-8
         ]
       }
@@ -19,14 +18,12 @@
     Content: {
       Headers: [
         {
-          Key: Content-Type,
-          Value: [
+          Content-Type: [
             text/plain; charset=utf-8
           ]
         },
         {
-          Key: Content-Length,
-          Value: [
+          Content-Length: [
             0
           ]
         }
@@ -35,7 +32,7 @@
     Method: {
       Method: POST
     },
-    RequestUri: 'http://localhost/example/Yoda/21',
+    RequestUri: http://localhost/example/Yoda/21,
     Headers: []
   },
   IsSuccessStatusCode: true
