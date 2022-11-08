@@ -1,0 +1,281 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimCube.Spartan.ExampleConsole</name>
+    </assembly>
+    <members>
+        <member name="T:SimCube.Spartan.ExampleConsole.Filters.ExampleNameIsPrometheusFilter">
+            <inheritdoc />
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Filters.ExampleNameIsPrometheusFilter.InvokeAsync(Microsoft.AspNetCore.Http.EndpointFilterInvocationContext,Microsoft.AspNetCore.Http.EndpointFilterDelegate)">
+            <inheritdoc />
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Handlers.DeleteExampleRequestHandler">
+            <summary>
+            Th example request handler.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Handlers.DeleteExampleRequestHandler.Handle(SimCube.Spartan.ExampleConsole.Requests.DeleteExampleRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Handlers.GetExampleCachedRequestHandler">
+            <summary>
+            Th example request handler.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Handlers.GetExampleCachedRequestHandler.Handle(SimCube.Spartan.ExampleConsole.Requests.GetExampleCachedRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Handlers.GetExampleRequestHandler">
+            <summary>
+            Th example request handler.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Handlers.GetExampleRequestHandler.Handle(SimCube.Spartan.ExampleConsole.Requests.GetExampleRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Handlers.GetStreamExampleRequestHandler">
+            <summary>
+            Th example request handler.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Handlers.GetStreamExampleRequestHandler.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimCube.Spartan.ExampleConsole.Handlers.GetStreamExampleRequestHandler"/> class.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Handlers.GetStreamExampleRequestHandler.Handle(SimCube.Spartan.ExampleConsole.Requests.GetStreamExampleRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Handlers.PatchExampleRequestHandler">
+            <summary>
+            Th example request handler.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Handlers.PatchExampleRequestHandler.Handle(SimCube.Spartan.ExampleConsole.Requests.PatchExampleRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Handlers.PostExampleRequestHandler">
+            <summary>
+            Th example request handler.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Handlers.PostExampleRequestHandler.Handle(SimCube.Spartan.ExampleConsole.Requests.PostExampleRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Handlers.PutExampleRequestHandler">
+            <summary>
+            Th example request handler.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Handlers.PutExampleRequestHandler.Handle(SimCube.Spartan.ExampleConsole.Requests.PutExampleRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Models.Person">
+            <summary>
+            Represents a person.
+            </summary>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Models.Person.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Models.Person.Age">
+            <summary>
+            Gets or sets the age.
+            </summary>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Models.Person.EmailAddress">
+            <summary>
+            Gets or sets the Email Address.
+            </summary>
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Requests.DeleteExampleRequest">
+            <summary>
+            The example delete request.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Requests.DeleteExampleRequest.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimCube.Spartan.ExampleConsole.Requests.DeleteExampleRequest"/> class.
+            </summary>
+            <param name="age">The age.</param>
+            <param name="name">The name.</param>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.DeleteExampleRequest.Age">
+            <summary>
+            Gets the age.
+            </summary>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.DeleteExampleRequest.Name">
+            <summary>
+            Gets the name.
+            </summary>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.DeleteExampleRequest.EndpointFilters">
+            <inheritdoc />
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Requests.DeleteExampleRequest.ConfigureEndpoint">
+            <inheritdoc />
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Requests.GetExampleCachedRequest">
+            <summary>
+            The example get request.
+            </summary>
+            <param name="Age">The age.</param>
+            <param name="Name">The name.</param>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Requests.GetExampleCachedRequest.#ctor(System.Int32,System.String)">
+            <summary>
+            The example get request.
+            </summary>
+            <param name="Age">The age.</param>
+            <param name="Name">The name.</param>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.GetExampleCachedRequest.Age">
+            <summary>The age.</summary>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.GetExampleCachedRequest.Name">
+            <summary>The name.</summary>
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Requests.GetExampleRequest">
+            <summary>
+            The example get request.
+            </summary>
+            <param name="Age">The age.</param>
+            <param name="Name">The name.</param>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Requests.GetExampleRequest.#ctor(System.Int32,System.String)">
+            <summary>
+            The example get request.
+            </summary>
+            <param name="Age">The age.</param>
+            <param name="Name">The name.</param>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.GetExampleRequest.Age">
+            <summary>The age.</summary>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.GetExampleRequest.Name">
+            <summary>The name.</summary>
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Requests.GetStreamExampleRequest">
+            <summary>
+            The example get stream request.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Requests.GetStreamExampleRequest.ConfigureEndpoint">
+            <inheritdoc />
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Requests.PatchExampleRequest">
+            <summary>
+            The example patch request.
+            </summary>
+            <param name="Age">The age.</param>
+            <param name="Name">The name.</param>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Requests.PatchExampleRequest.#ctor(System.Int32,System.String)">
+            <summary>
+            The example patch request.
+            </summary>
+            <param name="Age">The age.</param>
+            <param name="Name">The name.</param>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.PatchExampleRequest.Age">
+            <summary>The age.</summary>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.PatchExampleRequest.Name">
+            <summary>The name.</summary>
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Requests.PostExampleRequest">
+            <summary>
+            The example post request.
+            </summary>
+            <param name="Age">The age.</param>
+            <param name="Name">The name.</param>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Requests.PostExampleRequest.#ctor(System.Int32,System.String)">
+            <summary>
+            The example post request.
+            </summary>
+            <param name="Age">The age.</param>
+            <param name="Name">The name.</param>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.PostExampleRequest.Age">
+            <summary>The age.</summary>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.PostExampleRequest.Name">
+            <summary>The name.</summary>
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Requests.PutExampleRequest">
+            <summary>
+            The example put request.
+            </summary>
+            <param name="Age">The age.</param>
+            <param name="Name">The name.</param>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Requests.PutExampleRequest.#ctor(System.Int32,System.String)">
+            <summary>
+            The example put request.
+            </summary>
+            <param name="Age">The age.</param>
+            <param name="Name">The name.</param>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.PutExampleRequest.Age">
+            <summary>The age.</summary>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.PutExampleRequest.Name">
+            <summary>The name.</summary>
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Validators.DeleteExampleRequestValidator">
+            <summary>
+            Validator for Example Request.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Validators.DeleteExampleRequestValidator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimCube.Spartan.ExampleConsole.Validators.DeleteExampleRequestValidator"/> class.
+            </summary>
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Validators.GetExampleRequestValidator">
+            <summary>
+            Validator for Example Request.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Validators.GetExampleRequestValidator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimCube.Spartan.ExampleConsole.Validators.GetExampleRequestValidator"/> class.
+            </summary>
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Validators.PatchExampleRequestValidator">
+            <summary>
+            Validator for Example Request.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Validators.PatchExampleRequestValidator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimCube.Spartan.ExampleConsole.Validators.PatchExampleRequestValidator"/> class.
+            </summary>
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Validators.PostExampleRequestValidator">
+            <summary>
+            Validator for Example Request.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Validators.PostExampleRequestValidator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimCube.Spartan.ExampleConsole.Validators.PostExampleRequestValidator"/> class.
+            </summary>
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Validators.PutExampleRequestValidator">
+            <summary>
+            Validator for Example Request.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Validators.PutExampleRequestValidator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimCube.Spartan.ExampleConsole.Validators.PutExampleRequestValidator"/> class.
+            </summary>
+        </member>
+    </members>
+</doc>

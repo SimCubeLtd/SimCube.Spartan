@@ -11,7 +11,7 @@ Utilising .Net 7's &nbsp;[AsParametersAttribute](https://docs.microsoft.com/dotn
 
 [![codecov](https://codecov.io/gh/SimCubeLtd/SimCube.Spartan/branch/main/graph/badge.svg?token=YW1VVMY0UK)](https://codecov.io/gh/SimCubeLtd/SimCube.Spartan) [![main](https://github.com/SimCubeLtd/SimCube.Spartan/actions/workflows/main.yml/badge.svg)](https://github.com/SimCubeLtd/SimCube.Spartan/actions/workflows/main.yml) ![Nuget](https://img.shields.io/nuget/v/SimCube.Spartan?style=flat-square)
 
-&nbsp;
+## [Documentation](./docs/README.md)
 
 ## Usage/Examples
 

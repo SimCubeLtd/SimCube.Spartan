@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		LICENSE.md = LICENSE.md
 		README.md = README.md
 		renovate.json = renovate.json
+		Directory.Packages.props = Directory.Packages.props
+		nuget.config = nuget.config
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimCube.Spartan", "src\SimCube.Spartan\SimCube.Spartan.csproj", "{61DAEB9F-7D96-4A98-8D1D-5015194E7ECF}"
@@ -24,6 +26,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{EC712C
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\main.yml = .github\workflows\main.yml
 		.github\workflows\pull-requests.yml = .github\workflows\pull-requests.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FC95F39F-161F-4B80-B104-941DCF25A9BC}"
+	ProjectSection(SolutionItems) = preProject
+		src\Directory.Build.props = src\Directory.Build.props
 	EndProjectSection
 EndProject
 Global
@@ -47,5 +54,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EC712C38-BAE8-4EA4-B88D-94220DD8B2FF} = {B46F660C-2366-4CF8-9113-B587DC63C06F}
+		{FC95F39F-161F-4B80-B104-941DCF25A9BC} = {B46F660C-2366-4CF8-9113-B587DC63C06F}
 	EndGlobalSection
 EndGlobal
