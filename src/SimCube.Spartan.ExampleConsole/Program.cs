@@ -1,23 +1,21 @@
-﻿using SimCube.Spartan.Extensions;
+﻿var builder = WebApplication.CreateBuilder(args);
 
-var builder = WebApplication.CreateBuilder(args);
+// Register Support Services.
+builder.Services.RegisterRequiredServicesForDemo();
 
+// Add Spartan.Services to the container.
 builder.Services.AddSpartanInfrastructure(x => x.AsScoped(), true);
-builder.Services.AddOutputCache(options =>
-{
-    options.AddPolicy(nameof(GetExampleCachedRequest), policyBuilder =>
-    {
-        policyBuilder.Cache()
-            .Expire(TimeSpan.FromSeconds(10));
-    });
-});
-builder.Services.AddProblemDetails();
 
+// Create a WebApplication Instance from the Builder.
 var app = builder.Build();
 
-app.UseStatusCodePages();
-app.AddMediatedEndpointsFromAttributes();
-app.UseOutputCache();
-app.MediatedGet<GetExampleRequest>("example/{name}/{age}", routeHandlerBuilder => routeHandlerBuilder.WithName("GetExample"));
-app.MediatedPatch<PatchExampleRequest>("example/{name}/{age}");
+// Setup support services on the app.
+app.AddSupportServiceForDemoToApp();
+
+// Demo Registrations using Spartan.
+app.AddExampleDiscoveredMaps();
+app.AddExampleManualMaps();
+app.AddExampleGroupedMaps();
+
+// Run the WebHost.
 app.Run();

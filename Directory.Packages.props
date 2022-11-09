@@ -5,6 +5,8 @@
   
   <ItemGroup Label="Microsoft">
     <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="$(DotNetPackageVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(DotNetPackageVersion)" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="$(DotNetPackageVersion)" />
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="1.1.1" />
   </ItemGroup>
@@ -18,7 +20,7 @@
   <ItemGroup Label="Tests">
     <PackageVersion Include="coverlet.collector" Version="3.2.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
-    <PackageVersion Include="Verify.Xunit" Version="18.4.0" />
+    <PackageVersion Include="Verify.Xunit" Version="19.0.0" />
     <PackageVersion Include="xunit" Version="2.4.2" />
     <PackageVersion Include="Xunit.DependencyInjection" Version="8.6.1" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.5" />

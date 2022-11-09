@@ -83,7 +83,7 @@ Task("Pack")
     .Does(() =>
         {
             DotNetPack("src/SimCube.Spartan/SimCube.Spartan.csproj",
-             new DotNetCorePackSettings()
+             new DotNetPackSettings()
                         {
                             NoBuild = true,
                             NoRestore = true,

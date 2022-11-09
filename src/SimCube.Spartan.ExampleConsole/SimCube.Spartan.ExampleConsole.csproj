@@ -2,11 +2,13 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <LangVersion>preview</LangVersion>
+        <LangVersion>Latest</LangVersion>
     </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Bogus" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="SwashBuckle.AspNetCore" />
   </ItemGroup>
 
   <ItemGroup>

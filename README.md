@@ -14,23 +14,16 @@ Utilising .Net 7's &nbsp;[AsParametersAttribute](https://docs.microsoft.com/dotn
 ## [Documentation](./docs/README.md)
 
 ## Usage/Examples
+### See Examples of registration in the [DemoRegistrationMethods](./src/SimCube.Spartan.ExampleConsole/DemoRegistrationMethods.cs) class.
 
 ### Using Attributes
 
 #### Application Startup
 
 ```csharp
-var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSpartanInfrastructure(x => x.AsScoped());
 // Or pass through assemblies to scan for handlers
 // builder.Services.AddSpartanInfrastructure(x => x.AsScoped(), typeof(MyAssemblyOne), typeof(MyAssemblyTwo));
-
-var app = builder.Build();
-app.AddMediatedEndpointsFromAttributes();
-// Or pass through assemblies to scan for endpoints
-// app.AddMediatedEndpointsFromAttributes(typeof(MyAssemblyOne), typeof(MyAssemblyTwo));
-
-app.Run();
 ```
 
 #### Request, Optional Validation and Handler

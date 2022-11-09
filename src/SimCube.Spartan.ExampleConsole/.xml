@@ -4,6 +4,46 @@
         <name>SimCube.Spartan.ExampleConsole</name>
     </assembly>
     <members>
+        <member name="T:SimCube.Spartan.ExampleConsole.DemoRegistrationMethods">
+            <summary>
+            This is a simple example of how to use the Spartan API.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.DemoRegistrationMethods.RegisterRequiredServicesForDemo(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds support services used by the demo. Not Required directly by spartan.
+            </summary>
+            <param name="services">The services collection to populate.</param>
+            <returns>The populated service collection.</returns>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.DemoRegistrationMethods.AddExampleManualMaps(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            This method shows how to manually register mediated requests.
+            </summary>
+            <param name="app">The web application instance.</param>
+            <returns>The web application instance with the mediated requests mapped.</returns>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.DemoRegistrationMethods.AddExampleDiscoveredMaps(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            This method shows how to automatically register mediated requests using the attribute.
+            </summary>
+            <param name="app">The web application instance.</param>
+            <returns>The web application instance with the mediated requests mapped.</returns>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.DemoRegistrationMethods.AddExampleGroupedMaps(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            This method shows how to add grouped mapping to the app route instance..
+            </summary>
+            <param name="app">The web application instance.</param>
+            <returns>The web application instance with the mediated requests mapped.</returns>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.DemoRegistrationMethods.AddSupportServiceForDemoToApp(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            Adds support services used by the demo. Not Required directly by spartan.
+            </summary>
+            <param name="app">The web application instance.</param>
+            <returns>The configured web application instance.</returns>
+        </member>
         <member name="T:SimCube.Spartan.ExampleConsole.Filters.ExampleNameIsPrometheusFilter">
             <inheritdoc />
         </member>
@@ -26,12 +66,34 @@
         <member name="M:SimCube.Spartan.ExampleConsole.Handlers.GetExampleCachedRequestHandler.Handle(SimCube.Spartan.ExampleConsole.Requests.GetExampleCachedRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Handlers.GetExampleGroupRequestHandler">
+            <summary>
+            Th example request handler.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Handlers.GetExampleGroupRequestHandler.Handle(SimCube.Spartan.ExampleConsole.Requests.GetExampleGroupRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:SimCube.Spartan.ExampleConsole.Handlers.GetExampleRequestHandler">
             <summary>
             Th example request handler.
             </summary>
         </member>
         <member name="M:SimCube.Spartan.ExampleConsole.Handlers.GetExampleRequestHandler.Handle(SimCube.Spartan.ExampleConsole.Requests.GetExampleRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Handlers.GetExampleTwoGroupRequestHandler">
+            <summary>
+            Th example request handler.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Handlers.GetExampleTwoGroupRequestHandler.Handle(SimCube.Spartan.ExampleConsole.Requests.GetExampleTwoGroupRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Handlers.GetExampleWithTypeResultHandler">
+            <inheritdoc />
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Handlers.GetExampleWithTypeResultHandler.Handle(SimCube.Spartan.ExampleConsole.Requests.GetExampleWithTypeResultRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:SimCube.Spartan.ExampleConsole.Handlers.GetStreamExampleRequestHandler">
@@ -139,6 +201,28 @@
         <member name="P:SimCube.Spartan.ExampleConsole.Requests.GetExampleCachedRequest.Name">
             <summary>The name.</summary>
         </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Requests.GetExampleGroupRequest">
+            <summary>
+            The example get request.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Requests.GetExampleGroupRequest.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimCube.Spartan.ExampleConsole.Requests.GetExampleGroupRequest"/> class.
+            </summary>
+            <param name="age">The age.</param>
+            <param name="name">The name.</param>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.GetExampleGroupRequest.Age">
+            <summary>
+            Gets the age.
+            </summary>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.GetExampleGroupRequest.Name">
+            <summary>
+            Gets the name.
+            </summary>
+        </member>
         <member name="T:SimCube.Spartan.ExampleConsole.Requests.GetExampleRequest">
             <summary>
             The example get request.
@@ -159,13 +243,50 @@
         <member name="P:SimCube.Spartan.ExampleConsole.Requests.GetExampleRequest.Name">
             <summary>The name.</summary>
         </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Requests.GetExampleTwoGroupRequest">
+            <summary>
+            The example get request.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Requests.GetExampleTwoGroupRequest.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimCube.Spartan.ExampleConsole.Requests.GetExampleTwoGroupRequest"/> class.
+            </summary>
+            <param name="age">The age.</param>
+            <param name="name">The name.</param>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.GetExampleTwoGroupRequest.Age">
+            <summary>
+            Gets the age.
+            </summary>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.GetExampleTwoGroupRequest.Name">
+            <summary>
+            Gets the name.
+            </summary>
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Requests.GetExampleWithTypeResultRequest">
+            <summary>
+            The example get request.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Requests.GetExampleWithTypeResultRequest.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimCube.Spartan.ExampleConsole.Requests.GetExampleWithTypeResultRequest"/> class.
+            The example get request.
+            </summary>
+            <param name="name">The name.</param>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.GetExampleWithTypeResultRequest.Name">
+            <summary>Gets the name.</summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Requests.GetExampleWithTypeResultRequest.ConfigureEndpoint">
+            <inheritdoc />
+        </member>
         <member name="T:SimCube.Spartan.ExampleConsole.Requests.GetStreamExampleRequest">
             <summary>
             The example get stream request.
             </summary>
-        </member>
-        <member name="M:SimCube.Spartan.ExampleConsole.Requests.GetStreamExampleRequest.ConfigureEndpoint">
-            <inheritdoc />
         </member>
         <member name="T:SimCube.Spartan.ExampleConsole.Requests.PatchExampleRequest">
             <summary>
