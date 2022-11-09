@@ -117,15 +117,10 @@ public static class Startup
         }
 
         var endpointsToDefine = groupRequests
-            .Where(type => type.BaseType == typeof(BaseMediatedRequest) &&
-                           type.GetCustomAttributes(typeof(MediatedEndpointAttribute), true).Length > 0)
+            .Where(type => type.GetCustomAttributes(typeof(MediatedEndpointAttribute), true).Length > 0)
             .ToArray();
 
-        var requests = endpointsToDefine
-            .Where(type => type.GetInterfaces().Contains(typeof(IMediatedRequest))
-                           || (type.IsGenericType && type.GetInterfaces().Contains(typeof(IMediatedStream<>)))).ToArray();
-
-        foreach (var request in requests)
+        foreach (var request in endpointsToDefine)
         {
             Attribute
                 .GetCustomAttributes(request)
