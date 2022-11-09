@@ -1,4 +1,4 @@
-# BaseMediatedRequest Class
+# BaseMediatedRequest\<TResult\> Class
 
 [Home](../../../README.md) &#x2022; [Constructors](#constructors) &#x2022; [Properties](#properties) &#x2022; [Methods](#methods)
 
@@ -11,12 +11,18 @@ Base request for all mediated requests\.
 
 ```csharp
 [ExcludeFromCodeCoverage]
-public abstract class BaseMediatedRequest : SimCube.Spartan.Interfaces.IMediatedRequest
+public abstract class BaseMediatedRequest<TResult> : SimCube.Spartan.Interfaces.IMediatedRequest<TResult>
 ```
+
+### Type Parameters
+
+**TResult**
+
+The type of the result\.
 
 ### Inheritance
 
-[Object](https://docs.microsoft.com/en-us/dotnet/api/system) &#x2192; BaseMediatedRequest
+[Object](https://docs.microsoft.com/en-us/dotnet/api/system) &#x2192; BaseMediatedRequest\<TResult\>
 
 ### Attributes
 
@@ -25,9 +31,8 @@ public abstract class BaseMediatedRequest : SimCube.Spartan.Interfaces.IMediated
 ### Implements
 
 * MediatR\.IBaseRequest
-* [IMediatedRequest](../../Interfaces/IMediatedRequest/README.md)
-* [IMediatedRequest](../../Interfaces/IMediatedRequest-1/README.md)\<IResult\>
-* MediatR\.IRequest\<IResult\>
+* [IMediatedRequest](../../Interfaces/IMediatedRequest-1/README.md)\<TResult\>
+* MediatR\.IRequest\<TResult\>
 
 ## Constructors
 

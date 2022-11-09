@@ -11,9 +11,7 @@ Validation rules for mediated requests\.
 
 ```csharp
 [ExcludeFromCodeCoverage]
-public class ValidationBehavior<TRequest, TResponse> : MediatR.IPipelineBehavior<TRequest, TResponse>
-    where TRequest : MediatR.IRequest<TResponse> 
-    where TResponse : IResult
+public class ValidationBehavior<TRequest, TResponse> : MediatR.IPipelineBehavior<TRequest, TResponse> where TRequest : MediatR.IRequest<TResponse>
 ```
 
 ### Type Parameters

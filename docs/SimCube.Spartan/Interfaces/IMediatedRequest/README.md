@@ -10,7 +10,7 @@
 Interface for the Mediated Http Requests\.
 
 ```csharp
-public interface IMediatedRequest : MediatR.IRequest<IResult>
+public interface IMediatedRequest : SimCube.Spartan.Interfaces.IMediatedRequest<IResult>
 ```
 
 ### Derived
@@ -20,4 +20,5 @@ public interface IMediatedRequest : MediatR.IRequest<IResult>
 ### Implements
 
 * MediatR\.IBaseRequest
+* [IMediatedRequest](../IMediatedRequest-1/README.md)\<IResult\>
 * MediatR\.IRequest\<IResult\>

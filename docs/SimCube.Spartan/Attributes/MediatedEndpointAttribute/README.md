@@ -28,12 +28,13 @@ public sealed class MediatedEndpointAttribute : Attribute
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MediatedEndpointAttribute(RequestType, String)](-ctor/README.md) | Initializes a new instance of the [MediatedEndpointAttribute](./README.md) class\. |
+| [MediatedEndpointAttribute(RequestType, String, Boolean)](-ctor/README.md) | Initializes a new instance of the [MediatedEndpointAttribute](./README.md) class\. |
 
 ## Properties
 
 | Property | Summary |
 | -------- | ------- |
+| [IsGrouped](IsGrouped/README.md) | Gets a value indicating whether the endpoint is grouped\. |
 | [Method](Method/README.md) | Gets the type of the http request\. |
 | [Route](Route/README.md) | Gets the route of the endpoint\. |
 

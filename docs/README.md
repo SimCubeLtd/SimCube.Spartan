@@ -14,13 +14,15 @@
   * [RequestType](SimCube.Spartan/Enums/RequestType/README.md)
 * [SimCube.Spartan.Extensions](SimCube.Spartan/Extensions/README.md)
   * [MediatedRequestExtensions](SimCube.Spartan/Extensions/MediatedRequestExtensions/README.md)
-  * [MediatedStreamExtensions](SimCube.Spartan/Extensions/MediatedStreamExtensions/README.md)
+  * [ReflectionExtensions](SimCube.Spartan/Extensions/ReflectionExtensions/README.md)
   * [RouteHandlerBuilderExtensions](SimCube.Spartan/Extensions/RouteHandlerBuilderExtensions/README.md)
 * [SimCube.Spartan.Interfaces](SimCube.Spartan/Interfaces/README.md)
   * [IMediatedRequest](SimCube.Spartan/Interfaces/IMediatedRequest/README.md)
+  * [IMediatedRequest\<TResult\>](SimCube.Spartan/Interfaces/IMediatedRequest-1/README.md)
   * [IMediatedStream\<TResult\>](SimCube.Spartan/Interfaces/IMediatedStream-1/README.md)
 * [SimCube.Spartan.Requests](SimCube.Spartan/Requests/README.md)
   * [BaseMediatedRequest](SimCube.Spartan/Requests/BaseMediatedRequest/README.md)
+  * [BaseMediatedRequest\<TResult\>](SimCube.Spartan/Requests/BaseMediatedRequest-1/README.md)
   * [BaseMediatedStream\<TResult\>](SimCube.Spartan/Requests/BaseMediatedStream-1/README.md)
 * [SimCube.Spartan.Validation](SimCube.Spartan/Validation/README.md)
   * [ValidationBehavior\<TRequest, TResponse\>](SimCube.Spartan/Validation/ValidationBehavior-2/README.md)
@@ -29,6 +31,7 @@
 
 * &ensp; \([Object](https://docs.microsoft.com/en-us/dotnet/api/system)\)<a id="class-hierarchy-System_Object"></a>
 * &ensp; [&bull;](#class-hierarchy-System_Object "Object") &ensp; [BaseMediatedRequest](SimCube.Spartan/Requests/BaseMediatedRequest/README.md)<a id="class-hierarchy-SimCube_Spartan_Requests_BaseMediatedRequest"></a>
+* &ensp; [&bull;](#class-hierarchy-System_Object "Object") &ensp; [BaseMediatedRequest\<TResult\>](SimCube.Spartan/Requests/BaseMediatedRequest-1/README.md)<a id="class-hierarchy-SimCube_Spartan_Requests_BaseMediatedRequest_1"></a>
 * &ensp; [&bull;](#class-hierarchy-System_Object "Object") &ensp; [BaseMediatedStream\<TResult\>](SimCube.Spartan/Requests/BaseMediatedStream-1/README.md)<a id="class-hierarchy-SimCube_Spartan_Requests_BaseMediatedStream_1"></a>
 * &ensp; [&bull;](#class-hierarchy-System_Object "Object") &ensp; [ValidationBehavior\<TRequest, TResponse\>](SimCube.Spartan/Validation/ValidationBehavior-2/README.md)<a id="class-hierarchy-SimCube_Spartan_Validation_ValidationBehavior_2"></a>
 

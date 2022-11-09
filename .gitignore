@@ -354,3 +354,7 @@ tools/
 .idea/
 
 **/TestResults/
+
+.DS_Store
+
+test-output/
