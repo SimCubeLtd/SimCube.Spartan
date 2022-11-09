@@ -9,5 +9,6 @@
 | Interface | Summary |
 | --------- | ------- |
 | [IMediatedRequest](IMediatedRequest/README.md) | Interface for the Mediated Http Requests\. |
+| [IMediatedRequest\<TResult\>](IMediatedRequest-1/README.md) | Interface for the Mediated Http Requests\. |
 | [IMediatedStream\<TResult\>](IMediatedStream-1/README.md) | Interface for the Mediated Stream Requests\. |
 

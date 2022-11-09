@@ -1,8 +1,8 @@
-# MediatedStreamExtensions\.MediatedGetStream\<TRequest, TResult\>\(WebApplication, String, Action\<RouteHandlerBuilder\>?, IReadOnlyCollection\<IEndpointFilter\>?, String?, String?\) Method
+# MediatedRequestExtensions\.MediatedGetStream\<TRequest, TResult\>\(IEndpointRouteBuilder, String, Action\<RouteHandlerBuilder\>?, IReadOnlyCollection\<IEndpointFilter\>?, String?, String?\) Method
 
 [Home](../../../../README.md)
 
-**Containing Type**: [MediatedStreamExtensions](../README.md)
+**Containing Type**: [MediatedRequestExtensions](../README.md)
 
 **Assembly**: SimCube\.Spartan\.dll
 
@@ -10,7 +10,7 @@
 Map Mediated Get streams to the specified controller action\.
 
 ```csharp
-public static WebApplication MediatedGetStream<TRequest, TResult>(this WebApplication app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null, IReadOnlyCollection<IEndpointFilter>? endpointFilters = null, string? namedCachePolicy = null, string? namedRateLimitPolicy = null) where TRequest : SimCube.Spartan.Interfaces.IMediatedStream<TResult>
+public static IEndpointRouteBuilder MediatedGetStream<TRequest, TResult>(this IEndpointRouteBuilder app, string route, Action<RouteHandlerBuilder>? configureEndpoint = null, IReadOnlyCollection<IEndpointFilter>? endpointFilters = null, string? namedCachePolicy = null, string? namedRateLimitPolicy = null) where TRequest : SimCube.Spartan.Interfaces.IMediatedStream<TResult>
 ```
 
 ### Type Parameters
@@ -25,7 +25,7 @@ The type of the result\.
 
 ### Parameters
 
-**app** &ensp; WebApplication
+**app** &ensp; IEndpointRouteBuilder
 
 The web application instance\.
 
@@ -51,6 +51,6 @@ The optional named Rate Limit Policy to use\.
 
 ### Returns
 
-WebApplication
+IEndpointRouteBuilder
 
 A type of **IResult**\.

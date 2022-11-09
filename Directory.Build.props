@@ -18,7 +18,6 @@
         <Company>SimCubeLtd</Company>
         <VersionPrefix>7.0.0</VersionPrefix>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/SimCubeLtd/SimCube.Spartan</PackageProjectUrl>
     </PropertyGroup>
 

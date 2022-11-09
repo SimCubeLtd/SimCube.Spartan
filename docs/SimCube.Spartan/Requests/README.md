@@ -9,5 +9,6 @@
 | Class | Summary |
 | ----- | ------- |
 | [BaseMediatedRequest](BaseMediatedRequest/README.md) | Base request for all mediated requests\. |
+| [BaseMediatedRequest\<TResult\>](BaseMediatedRequest-1/README.md) | Base request for all mediated requests\. |
 | [BaseMediatedStream\<TResult\>](BaseMediatedStream-1/README.md) | Represents a base mediated stream\. |
 
