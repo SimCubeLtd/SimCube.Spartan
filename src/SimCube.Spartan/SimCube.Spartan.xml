@@ -25,12 +25,18 @@
             Attribute for registration of an Endpoint.
             </summary>
         </member>
-        <member name="M:SimCube.Spartan.Attributes.MediatedEndpointAttribute.#ctor(SimCube.Spartan.Enums.RequestType,System.String)">
+        <member name="M:SimCube.Spartan.Attributes.MediatedEndpointAttribute.#ctor(SimCube.Spartan.Enums.RequestType,System.String,System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:SimCube.Spartan.Attributes.MediatedEndpointAttribute"/> class.
             </summary>
             <param name="method">The mediated request method.</param>
             <param name="route">The route to register the endpoint on.</param>
+            <param name="isGrouped">Specifies if the endpoint should be mapped on the app, or within a group.</param>
+        </member>
+        <member name="P:SimCube.Spartan.Attributes.MediatedEndpointAttribute.IsGrouped">
+            <summary>
+            Gets a value indicating whether the endpoint is grouped.
+            </summary>
         </member>
         <member name="P:SimCube.Spartan.Attributes.MediatedEndpointAttribute.Method">
             <summary>
@@ -56,6 +62,26 @@
         <member name="P:SimCube.Spartan.Attributes.RateLimitPolicyAttribute.PolicyName">
             <summary>
             Gets the type of the http request.
+            </summary>
+        </member>
+        <member name="T:SimCube.Spartan.Enums.ImplementedType">
+            <summary>
+            The type of the implemented interface.
+            </summary>
+        </member>
+        <member name="F:SimCube.Spartan.Enums.ImplementedType.Unknown">
+            <summary>
+            The type is unknown.
+            </summary>
+        </member>
+        <member name="F:SimCube.Spartan.Enums.ImplementedType.Request">
+            <summary>
+            The type is a request.
+            </summary>
+        </member>
+        <member name="F:SimCube.Spartan.Enums.ImplementedType.Stream">
+            <summary>
+            The type is a stream.
             </summary>
         </member>
         <member name="T:SimCube.Spartan.Enums.RequestType">
@@ -93,7 +119,7 @@
             Extensions for Attributes used in Service Startup.
             </summary>
         </member>
-        <member name="M:SimCube.Spartan.Extensions.AttributeExtensions.SetupMediatedRequestEndpointAttributes(System.Attribute[],System.Type,Microsoft.AspNetCore.Builder.WebApplication)">
+        <member name="M:SimCube.Spartan.Extensions.AttributeExtensions.SetupMediatedRequestEndpointAttributes(System.Attribute[],System.Type,Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)">
             <summary>
             Sets up mediated attribute endpoints if the attribute is of type <see cref="T:SimCube.Spartan.Attributes.MediatedEndpointAttribute"/>.
             </summary>
@@ -106,7 +132,7 @@
             The extensions for Mediation request mapping.
             </summary>
         </member>
-        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedGet``1(Microsoft.AspNetCore.Builder.WebApplication,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
+        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedGet``1(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
             <summary>
             Map Mediated Get requests to the specified controller action.
             </summary>
@@ -119,7 +145,35 @@
             <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
             <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
         </member>
-        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedPost``1(Microsoft.AspNetCore.Builder.WebApplication,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
+        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedGet``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
+            <summary>
+            Map Mediated Get requests to the specified controller action.
+            </summary>
+            <param name="app">The web application instance.</param>
+            <param name="route">the route to map the request on.</param>
+            <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
+            <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
+            <param name="namedCachePolicy">The optional named Output Cache Policy to use.</param>
+            <param name="namedRateLimitPolicy">The optional named Rate Limit Policy to use.</param>
+            <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
+            <typeparam name="TResult">The optional result type.</typeparam>
+            <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
+        </member>
+        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedPost``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
+            <summary>
+            Map Mediated Post requests to the specified controller action.
+            </summary>
+            <param name="app">The web application instance.</param>
+            <param name="route">the route to map the request on.</param>
+            <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
+            <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
+            <param name="namedCachePolicy">The optional named Output Cache Policy to use.</param>
+            <param name="namedRateLimitPolicy">The optional named Rate Limit Policy to use.</param>
+            <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
+            <typeparam name="TResult">The optional result type.</typeparam>
+            <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
+        </member>
+        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedPost``1(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
             <summary>
             Map Mediated Post requests to the specified controller action.
             </summary>
@@ -132,7 +186,7 @@
             <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
             <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
         </member>
-        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedPut``1(Microsoft.AspNetCore.Builder.WebApplication,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
+        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedPut``1(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
             <summary>
             Map Mediated Put requests to the specified controller action.
             </summary>
@@ -145,9 +199,23 @@
             <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
             <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
         </member>
-        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedPatch``1(Microsoft.AspNetCore.Builder.WebApplication,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
+        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedPut``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
             <summary>
-            Map Mediated Patch requests to the specified controller action.
+            Map Mediated Put requests to the specified controller action.
+            </summary>
+            <param name="app">The web application instance.</param>
+            <param name="route">the route to map the request on.</param>
+            <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
+            <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
+            <param name="namedCachePolicy">The optional named Output Cache Policy to use.</param>
+            <param name="namedRateLimitPolicy">The optional named Rate Limit Policy to use.</param>
+            <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
+            <typeparam name="TResult">The optional result type.</typeparam>
+            <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
+        </member>
+        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedPatch``1(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
+            <summary>
+            Map Mediated Get requests to the specified controller action.
             </summary>
             <param name="app">The web application instance.</param>
             <param name="route">the route to map the request on.</param>
@@ -158,7 +226,35 @@
             <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
             <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
         </member>
-        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedDelete``1(Microsoft.AspNetCore.Builder.WebApplication,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
+        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedPatch``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
+            <summary>
+            Map Mediated Patch requests to the specified controller action.
+            </summary>
+            <param name="app">The web application instance.</param>
+            <param name="route">the route to map the request on.</param>
+            <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
+            <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
+            <param name="namedCachePolicy">The optional named Output Cache Policy to use.</param>
+            <param name="namedRateLimitPolicy">The optional named Rate Limit Policy to use.</param>
+            <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
+            <typeparam name="TResult">The optional result type.</typeparam>
+            <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
+        </member>
+        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedDelete``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
+            <summary>
+            Map Mediated Delete requests to the specified controller action.
+            </summary>
+            <param name="app">The web application instance.</param>
+            <param name="route">the route to map the request on.</param>
+            <param name="configureEndpoint">The optional route handler configuration action for endpoint extension.</param>
+            <param name="endpointFilters">The optional Endpoint filters to chain to the request pipeline.</param>
+            <param name="namedCachePolicy">The optional named Output Cache Policy to use.</param>
+            <param name="namedRateLimitPolicy">The optional named Rate Limit Policy to use.</param>
+            <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
+            <typeparam name="TResult">The optional result type.</typeparam>
+            <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
+        </member>
+        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedDelete``1(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
             <summary>
             Map Mediated Delete requests to the specified controller action.
             </summary>
@@ -171,12 +267,7 @@
             <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
             <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
         </member>
-        <member name="T:SimCube.Spartan.Extensions.MediatedStreamExtensions">
-            <summary>
-            The extensions for Mediation request mapping.
-            </summary>
-        </member>
-        <member name="M:SimCube.Spartan.Extensions.MediatedStreamExtensions.MediatedGetStream``2(Microsoft.AspNetCore.Builder.WebApplication,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
+        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedGetStream``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
             <summary>
             Map Mediated Get streams to the specified controller action.
             </summary>
@@ -190,7 +281,7 @@
             <typeparam name="TResult">The type of the result.</typeparam>
             <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
         </member>
-        <member name="M:SimCube.Spartan.Extensions.MediatedStreamExtensions.MediatedPostStream``2(Microsoft.AspNetCore.Builder.WebApplication,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
+        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedPostStream``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
             <summary>
             Map Mediated Post streams to the specified controller action.
             </summary>
@@ -204,7 +295,7 @@
             <typeparam name="TResult">The type of the result.</typeparam>
             <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
         </member>
-        <member name="M:SimCube.Spartan.Extensions.MediatedStreamExtensions.MediatedPutStream``2(Microsoft.AspNetCore.Builder.WebApplication,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
+        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedPutStream``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
             <summary>
             Map Mediated Put streams to the specified controller action.
             </summary>
@@ -218,7 +309,7 @@
             <typeparam name="TResult">The type of the result.</typeparam>
             <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
         </member>
-        <member name="M:SimCube.Spartan.Extensions.MediatedStreamExtensions.MediatedPatchStream``2(Microsoft.AspNetCore.Builder.WebApplication,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
+        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedPatchStream``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
             <summary>
             Map Mediated Patch streams to the specified controller action.
             </summary>
@@ -232,7 +323,7 @@
             <typeparam name="TResult">The type of the result.</typeparam>
             <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
         </member>
-        <member name="M:SimCube.Spartan.Extensions.MediatedStreamExtensions.MediatedDeleteStream``2(Microsoft.AspNetCore.Builder.WebApplication,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
+        <member name="M:SimCube.Spartan.Extensions.MediatedRequestExtensions.MediatedDeleteStream``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Collections.Generic.IReadOnlyCollection{Microsoft.AspNetCore.Http.IEndpointFilter},System.String,System.String)">
             <summary>
             Map Mediated Delete streams to the specified controller action.
             </summary>
@@ -245,6 +336,19 @@
             <typeparam name="TRequest">The type of the request to map with its parameters.</typeparam>
             <typeparam name="TResult">The type of the result.</typeparam>
             <returns>A type of <see cref="T:Microsoft.AspNetCore.Http.IResult"/>.</returns>
+        </member>
+        <member name="T:SimCube.Spartan.Extensions.ReflectionExtensions">
+            <summary>
+            Common extension methods for Reflection.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.Extensions.ReflectionExtensions.InheritsFrom(System.Type,System.Type)">
+            <summary>
+            Checks if a type inherits from another.
+            </summary>
+            <param name="t1">The type to check.</param>
+            <param name="t2">The type to check against.</param>
+            <returns>True if it is assignable, false if not.</returns>
         </member>
         <member name="T:SimCube.Spartan.Extensions.RouteHandlerBuilderExtensions">
             <summary>
@@ -264,6 +368,12 @@
             Interface for the Mediated Http Requests.
             </summary>
         </member>
+        <member name="T:SimCube.Spartan.Interfaces.IMediatedRequest`1">
+            <summary>
+            Interface for the Mediated Http Requests.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+        </member>
         <member name="T:SimCube.Spartan.Interfaces.IMediatedStream`1">
             <summary>
             Interface for the Mediated Stream Requests.
@@ -281,6 +391,23 @@
             </summary>
         </member>
         <member name="M:SimCube.Spartan.Requests.BaseMediatedRequest.ConfigureEndpoint">
+            <summary>
+            Optionally Configures the Endpoint of the request.
+            </summary>
+            <returns>The route builder configuration action.</returns>
+        </member>
+        <member name="T:SimCube.Spartan.Requests.BaseMediatedRequest`1">
+            <summary>
+            Base request for all mediated requests.
+            </summary>
+            <typeparam name="TResult">The type of the result.</typeparam>
+        </member>
+        <member name="P:SimCube.Spartan.Requests.BaseMediatedRequest`1.EndpointFilters">
+            <summary>
+            Gets the optional filters collection for endpoint middleware chaining via filters.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.Requests.BaseMediatedRequest`1.ConfigureEndpoint">
             <summary>
             Optionally Configures the Endpoint of the request.
             </summary>
@@ -344,6 +471,14 @@
             <param name="app">The web application instance.</param>
             <param name="handlerAssemblyMarkerTypes">The assemblies to look for attributes in.</param>
             <returns>The populated web application instance.</returns>
+        </member>
+        <member name="M:SimCube.Spartan.Startup.AddMediatedEndpointsToGroup(Microsoft.AspNetCore.Routing.RouteGroupBuilder,System.Type[])">
+            <summary>
+            Adds the mediated endpoints to a group.
+            </summary>
+            <param name="group">The group to map onto.</param>
+            <param name="groupRequests">The mediated requests to map as group children.</param>
+            <returns>The populated group builder instance.</returns>
         </member>
         <member name="T:SimCube.Spartan.Validation.ValidationBehavior`2">
             <summary>

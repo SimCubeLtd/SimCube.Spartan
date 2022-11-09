@@ -93,6 +93,34 @@ public static class Startup
             .Where(type => type.GetCustomAttributes(typeof(MediatedEndpointAttribute), true).Length > 0)
             .ToArray();
 
+        foreach (var request in endpointsToDefine)
+        {
+            Attribute
+                .GetCustomAttributes(request)
+                .SetupMediatedRequestEndpointAttributes(request, app);
+        }
+
+        return app;
+    }
+
+    /// <summary>
+    /// Adds the mediated endpoints to a group.
+    /// </summary>
+    /// <param name="group">The group to map onto.</param>
+    /// <param name="groupRequests">The mediated requests to map as group children.</param>
+    /// <returns>The populated group builder instance.</returns>
+    public static RouteGroupBuilder AddMediatedEndpointsToGroup(this RouteGroupBuilder group, params Type[] groupRequests)
+    {
+        if (groupRequests.Length == 0)
+        {
+            throw new InvalidOperationException("No group markers were provided.");
+        }
+
+        var endpointsToDefine = groupRequests
+            .Where(type => type.BaseType == typeof(BaseMediatedRequest) &&
+                           type.GetCustomAttributes(typeof(MediatedEndpointAttribute), true).Length > 0)
+            .ToArray();
+
         var requests = endpointsToDefine
             .Where(type => type.GetInterfaces().Contains(typeof(IMediatedRequest))
                            || (type.IsGenericType && type.GetInterfaces().Contains(typeof(IMediatedStream<>)))).ToArray();
@@ -101,9 +129,9 @@ public static class Startup
         {
             Attribute
                 .GetCustomAttributes(request)
-                .SetupMediatedRequestEndpointAttributes(request, app);
+                .SetupMediatedRequestEndpointAttributes(request, group);
         }
 
-        return app;
+        return group;
     }
 }
