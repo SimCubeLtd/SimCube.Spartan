@@ -108,13 +108,6 @@ internal static class AttributeExtensions
         return (null, ImplementedType.Unknown);
     }
 
-    private static Type? GetGenericInterface(Type[] interfacesOnType) =>
-        Array.Find(
-            interfacesOnType,
-            x => x.IsGenericType &&
-                 (x.GetGenericTypeDefinition() == typeof(IMediatedRequest<>) ||
-                  x.GetGenericTypeDefinition() == typeof(IMediatedRequest<>)));
-
     private static string? GetCachedPolicyNameIfHasAttribute(Attribute[] attributes) =>
         attributes?.FirstOrDefault(x => x is CachePolicyAttribute) is not CachePolicyAttribute cachePolicyAttribute
             ? null

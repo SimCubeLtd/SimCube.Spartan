@@ -68,6 +68,7 @@ public static class DemoRegistrationMethods
 
         // Or manually register the requests on the group if they do not have the attribute.
         group.MediatedGet<GetExampleTwoGroupRequest>("/example-two/{name}/{age}");
+        group.MediatedGet<GetExampleThreeGroupRequest, Results<Ok<string>, NotFound>>("/example-three/{name}/{age}");
 
         return app;
     }

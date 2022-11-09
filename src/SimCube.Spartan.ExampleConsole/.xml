@@ -82,6 +82,14 @@
         <member name="M:SimCube.Spartan.ExampleConsole.Handlers.GetExampleRequestHandler.Handle(SimCube.Spartan.ExampleConsole.Requests.GetExampleRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Handlers.GetExampleThreeGroupRequestHandler">
+            <summary>
+            Th example request handler.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Handlers.GetExampleThreeGroupRequestHandler.Handle(SimCube.Spartan.ExampleConsole.Requests.GetExampleThreeGroupRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:SimCube.Spartan.ExampleConsole.Handlers.GetExampleTwoGroupRequestHandler">
             <summary>
             Th example request handler.
@@ -242,6 +250,28 @@
         </member>
         <member name="P:SimCube.Spartan.ExampleConsole.Requests.GetExampleRequest.Name">
             <summary>The name.</summary>
+        </member>
+        <member name="T:SimCube.Spartan.ExampleConsole.Requests.GetExampleThreeGroupRequest">
+            <summary>
+            The example get request.
+            </summary>
+        </member>
+        <member name="M:SimCube.Spartan.ExampleConsole.Requests.GetExampleThreeGroupRequest.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimCube.Spartan.ExampleConsole.Requests.GetExampleThreeGroupRequest"/> class.
+            </summary>
+            <param name="age">The age.</param>
+            <param name="name">The name.</param>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.GetExampleThreeGroupRequest.Age">
+            <summary>
+            Gets the age.
+            </summary>
+        </member>
+        <member name="P:SimCube.Spartan.ExampleConsole.Requests.GetExampleThreeGroupRequest.Name">
+            <summary>
+            Gets the name.
+            </summary>
         </member>
         <member name="T:SimCube.Spartan.ExampleConsole.Requests.GetExampleTwoGroupRequest">
             <summary>
