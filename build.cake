@@ -1,5 +1,5 @@
 #addin nuget:?package=SimpleExec&version=11.0.0
-#addin "nuget:?package=Cake.MinVer&version=2.0.0"
+#addin "nuget:?package=Cake.MinVer&version=3.0.0"
 
 using System.Text.Json;
 using SimpleExec;
