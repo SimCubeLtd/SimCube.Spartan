@@ -14,7 +14,7 @@
   <ItemGroup Label="ThirdParty">
     <PackageVersion Include="Bogus" Version="34.0.2" />
     <PackageVersion Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.2" />
+    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.3.0" />
   </ItemGroup>
   
   <ItemGroup Label="Tests">
