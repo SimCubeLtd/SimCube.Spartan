@@ -28,7 +28,7 @@ jobs:
           dotnet tool restore
           dotnet cake
 
-      - uses: codecov/codecov-action@v3
+      - uses: codecov/codecov-action@v4
         with:
             directory: ./test-output
             files: coverage.cobertura.xml
