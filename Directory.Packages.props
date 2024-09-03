@@ -12,7 +12,7 @@
   </ItemGroup>
   
   <ItemGroup Label="ThirdParty">
-    <PackageVersion Include="Bogus" Version="34.0.2" />
+    <PackageVersion Include="Bogus" Version="35.6.1" />
     <PackageVersion Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.4.0" />
   </ItemGroup>
