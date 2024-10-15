@@ -6,30 +6,30 @@
   <ItemGroup Label="Microsoft">
     <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="$(DotNetPackageVersion)" />
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(DotNetPackageVersion)" />
-    <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.9.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="$(DotNetPackageVersion)" />
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="1.1.1" />
   </ItemGroup>
   
   <ItemGroup Label="ThirdParty">
     <PackageVersion Include="Bogus" Version="34.0.2" />
-    <PackageVersion Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.4.0" />
+    <PackageVersion Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
   </ItemGroup>
   
   <ItemGroup Label="Tests">
     <PackageVersion Include="coverlet.collector" Version="3.2.0" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
-    <PackageVersion Include="Verify.Xunit" Version="19.5.0" />
-    <PackageVersion Include="xunit" Version="2.4.2" />
-    <PackageVersion Include="Xunit.DependencyInjection" Version="8.7.0" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.5" />
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.1" />
-    <PackageVersion Include="Shouldly" Version="4.1.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageVersion Include="Verify.Xunit" Version="19.14.1" />
+    <PackageVersion Include="xunit" Version="2.9.2" />
+    <PackageVersion Include="Xunit.DependencyInjection" Version="8.9.1" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.20" />
+    <PackageVersion Include="Shouldly" Version="4.2.1" />
   </ItemGroup>
   
   <ItemGroup Label="Analyzers">
-    <PackageVersion Include="Roslynator.Analyzers" Version="4.2.0" />
-    <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.435" />
+    <PackageVersion Include="Roslynator.Analyzers" Version="4.12.8" />
+    <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
   </ItemGroup>
 </Project>
